@@ -8,6 +8,9 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { NavComponent } from './components/nav/nav.component';
+import { HttpClientModule } from '@angular/common/http'
+
 
 registerLocaleData(localePt, 'pt');
 
@@ -15,13 +18,15 @@ registerLocaleData(localePt, 'pt');
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES)
 
   ],

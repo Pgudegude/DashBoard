@@ -1,13 +1,9 @@
-<nav class="navbar">
-    <span class="navbar-brand mb-0 h1">GudeGude</span>
-</nav>
-
 <main>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="card-header mt-5">
-                    <form class="form-row" [formGroup]="formularioLogin">
+                    <form class="form-row" [formGroup]="formularioLogin" *ngIf="!login; else usuario">
                         <div class="col-md-12 formGroup">
                             <label for="email" class="pl-3"><strong>Email:</strong></label>
                             <input class="form-control" type="text" name="email" id="email" required
@@ -19,9 +15,14 @@
                                 placeholder="digite sua senha" formControlName="senha" required>
                         </div>
                         <div id="entrar" class="col-md-12 mt-3">
-                            <button class="btn btn-info btn-block">Entrar</button>
+                            <button class="btn btn-info btn-block" (click)="logando()">Entrar</button>
                         </div>
                     </form>
+                    <ng-template #usuario>
+                        <div class="alert alert-danger text-center" role="alert">
+                            <strong>Dados invalidos e/ou você não tem permissão!</strong>
+                        </div>
+                    </ng-template>
                 </div>
             </div>
         </div>
