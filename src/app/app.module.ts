@@ -11,6 +11,8 @@ import { registerLocaleData } from '@angular/common';
 import { NavComponent } from './components/nav/nav.component';
 import { HttpClientModule } from '@angular/common/http'
 
+import { PedidoComponent } from './components/pedido/pedido.component';
+import { HeaderComponent } from './components/header/header.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -19,7 +21,9 @@ registerLocaleData(localePt, 'pt');
     AppComponent,
     LoginComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    PedidoComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
