@@ -1,1 +1,33 @@
+<<<<<<< HEAD
 <p>home works!</p>
+=======
+<main>
+    <div class="container-fluid p-0" *ngIf="login; else erro">
+        <div class="row p-0 m-0">
+            <div class="col-md-3 p-0 corpo" style="height: 100vh;">
+                <div class="card-header corpo" style="width:auto;">
+                    DashBoard
+                </div>
+                <div class="corpo" style="width: auto;">
+                    <ul class="list-group list-group-flush corpo">
+                        <a><li class="list-group-item corpo">Meus clientes</li></a>
+                        <a><li class="list-group-item corpo">Pedidos</li></a>
+                        <a><li class="list-group-item corpo">Produtos</li></a>
+                        <a><li class="list-group-item corpo">Faturamento</li></a>
+                        <a><li class="list-group-item corpo">Dados</li></a>
+                        <a (click)="deslogar()"><li class="list-group-item corpo"> Sair</li></a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                O que deseja fazer?
+            </div>
+        </div>
+    </div>
+    <ng-template #erro>
+        <div class="alert alert-danger text-center" role="alert">
+            <strong>USUARIO PRECISA ESTAR LOGADO!</strong>
+        </div>
+    </ng-template>
+</main>
+>>>>>>> bdb41541ddcbb2616378dae30af57b3942906a0c

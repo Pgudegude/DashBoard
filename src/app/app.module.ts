@@ -11,6 +11,9 @@ import { registerLocaleData } from '@angular/common';
 import { PedidoComponent } from './components/pedido/pedido.component';
 
 import { ProdutoComponent } from './components/produto/produto.component';
+import { NavComponent } from './components/nav/nav.component';
+import { HttpClientModule } from '@angular/common/http'
+
 
 registerLocaleData(localePt, 'pt');
 
@@ -20,13 +23,15 @@ registerLocaleData(localePt, 'pt');
     LoginComponent,
     HomeComponent,
     PedidoComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES)
 
   ],
