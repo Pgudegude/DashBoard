@@ -9,7 +9,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { NavComponent } from './components/nav/nav.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { MenuComponent } from './components/menu/menu.component';
+import { ProdutoConfigComponent } from './components/produto-config/produto-config.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
 
 registerLocaleData(localePt, 'pt');
@@ -19,7 +24,9 @@ registerLocaleData(localePt, 'pt');
     AppComponent,
     LoginComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    MenuComponent,
+    ProdutoConfigComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,8 @@ registerLocaleData(localePt, 'pt');
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    NgxMaskModule.forRoot(options)
 
   ],
   providers: [{
