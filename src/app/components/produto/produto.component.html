@@ -1,47 +1,26 @@
 <table id="produto" class="table">
     <thead id="tabela" class=" text-center">
         <tr>
-            <th scope="col-md-1">Codigo</th>
-            <th scope="col-md-1">Produto</th>
-            <th scope="col-md-1">Descrição</th>
-            <th scope="col-md-1">Valor</th>
-            <th scope="col-md-1">Valor com desconto</th>
-            <th scope="col-md-1">Categoria</th>
+            <th scope="col-md-3">Codigo</th>
+            <th scope="col-md-3">Produto</th>
+            <th scope="col-md-3">Descrição</th>
+            <th scope="col-md-3">Imagem</th>
+            <th scope="col-md-3">Valor</th>
+            <th scope="col-md-3">Valor com desconto</th>
+
         </tr>
     </thead>
-    <tbody class="text-center">
+    <tbody class="text-center" *ngFor="let produto of product | slice: 0:10;">
         <tr>
-            <th scope="row">1</th>
-            <td>ESFERA </td>
-            <td>DBZ</td>
-            <td>R$80000</td>
-            <td>R$20000</td>
-            <td>20</td>
+            <th class="text-center" scope="row">{{produto.codProduct}}</th>
+            <td class="text-center">{{produto.name}} </td>
+            <td class="text-justify"> {{produto.description}}</td>
+            <td class="text-center"><img class="card-img-top" [src]="produto.image" alt={{produto.name}} title={{produto.name}}></td>
+            <td class="text-center">{{produto.valueProduct | currency:"BRL"}}</td>
+            <td class="text-center">{{produto.valueDiscount | currency:"BRL"}}</td>
+
         </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>ESFERA </td>
-            <td>DBZ</td>
-            <td>R$80000</td>
-            <td>R$20000</td>
-            <td>20</td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>ESFERA </td>
-            <td>DBZ</td>
-            <td>R$80000</td>
-            <td>R$20000</td>
-            <td>20</td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>ESFERA </td>
-            <td>DBZ</td>
-            <td>R$80000</td>
-            <td>R$20000</td>
-            <td>20</td>
-        </tr>
+
 
 
     </tbody>

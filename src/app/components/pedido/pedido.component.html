@@ -13,15 +13,14 @@
                             <div id="teste" class="row">
                                 <div class="col-md-12">
                                     <table class="table">
-                                        <thead>
+                                        <thead *ngFor="let pedidos of pedido; index as i">
                                             <tr class="text-center">
                                                 <th class=" text-uppercase small font-weight-bold">
-                                                    Codigo
+                                                    Codigo {{pedidos.date | date:"dd/MM/yyyy"}}
 
                                                 </th>
                                                 <th class=" text-uppercase small font-weight-bold">
                                                     Valor
-
                                                 </th>
                                                 <th class=" text-uppercase small font-weight-bold">
                                                     Cliente

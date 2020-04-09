@@ -1,14 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-<<<<<<< HEAD
 import {PedidoComponent} from './components/pedido/pedido.component';
 import {HomeComponent}   from './components/home/home.component';
 import { ProdutoComponent } from './components/produto/produto.component';
-=======
-import { HomeComponent } from './components/home/home.component';
-
->>>>>>> bdb41541ddcbb2616378dae30af57b3942906a0c
 
 export const ROUTES: Routes = [
   {
@@ -18,11 +13,14 @@ export const ROUTES: Routes = [
   {
     path: "home",
     component: HomeComponent
-<<<<<<< HEAD
   },
   {
     path: "produto",
     component: ProdutoComponent
+  },
+  {
+    path: "home/pedido",
+    component: PedidoComponent
   },
   {
     path: "pedido",
@@ -31,9 +29,6 @@ export const ROUTES: Routes = [
  
 
  
-=======
-  }
->>>>>>> bdb41541ddcbb2616378dae30af57b3942906a0c
 ]
 @NgModule({
   imports: [RouterModule.forRoot(ROUTES)],

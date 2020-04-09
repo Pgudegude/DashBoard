@@ -1,36 +1,60 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Login } from '../model/login';
-import { throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Login } from 'src/app/model/login.model';
+import { Observable, throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
+import { Cliente } from 'src/app/model/cliente';
+import { Endereco } from 'src/app/model/endereco';
 
-
-
+function adaptar(data: any) {
+  console.log(data)
+  return new Endereco(data.zipCode, data.logradouro, data.neighborhood, data.number, data.state,
+    data.city, data.complement, data.idAddress
+  )
+}
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+
+  // httpOptions = {
+  //   headers: new HttpHeaders({ 'Content-Type': 'dado' })
+  // }
   dado(login: Login) {
     return {
       "mail": login.mail,
       "password": login.password
     }
+
   }
 
-  
+
   fazerLogin(login: Login) {
     let comunicacao = this.dado(login)
+
+    // let url = this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
     return this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
       .pipe(
         retry(2),
+
         catchError(this.handleError)
       )
   }
-
-
+  pegarEndereco(cliente: Cliente) {
+    return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`, cliente)
+      .pipe(
+        map(adaptar
+        )
+      )
+  }
+  enviarSenha(email:string){
+    return this.http.post(`http://localhost:8080/ecommerce/email-send`,email)
+  }
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
