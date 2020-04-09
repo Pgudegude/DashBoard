@@ -23,10 +23,11 @@ function adaptar(data: any[]) {
     )
   )
 }
+
 function adaptar3(data:any[]){
   return data.map(
     elem=> new Detalhe(elem.code,
-      elem.valueProduct,
+    elem.valueProduct,
     elem.valueFreight,
     elem.amount, 
     elem.codProduct, 
@@ -61,7 +62,7 @@ export class PedidoService {
 
   public envPedido(pedido: Pedido) {
     let comunicacao = this.adaptador2(pedido)
-    let url = this.http.post('http://localhost:8080/ecommerce/request', comunicacao);
+    let url = this.http.post('http://localhost:8080/dash/request', comunicacao);
     return url.pipe(map(
       dados => dados
     ));
@@ -91,17 +92,15 @@ export class PedidoService {
   }
 
 details(code: number){
-  return this.http.get(`http://localhost:8080/ecommerce/find-itemcart/${code}`).pipe(
+  return this.http.get(`http://localhost:8080/dash/find-itemcart/${code}`).pipe(
     map(adaptar3)
   )
   }
+buscarPedidos(){
+  return this.http.get("http://localhost:8080/dash/buscarRequest").pipe(
+    map(adaptar3)
+  )
+}
 
-  acompanhar() {
-    let cliente = JSON.parse(atob(sessionStorage.getItem("usuario")))
-    let url = this.http.post(`http://localhost:8080/ecommerce/acompanhar`, cliente)
-    return url.pipe(
-      map(adaptar
-      ))
-  }
 
 }

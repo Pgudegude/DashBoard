@@ -3,8 +3,5 @@ nav {
 }
 
 .container {
-    width: 800px;
-    display: flex;
-    flex-direction: column;
-    margin-right: 50px;
+    width: 70%;
 }

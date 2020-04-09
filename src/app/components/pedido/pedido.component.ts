@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import{ Pedido} from 'src/app/model/Pedido'
 import { PedidoService } from 'src/app/service/pedido.service';
+import { Detalhe } from 'src/app/model/detalhe';
+                
+
 
 @Component({
   selector: 'app-pedido',
@@ -11,7 +13,7 @@ export class PedidoComponent implements OnInit {
   constructor(private http: PedidoService) {
   }
  
-  pedido: Pedido[] = []
+  pedido: Detalhe[] = []
   carregar: boolean
   vazio = []
   detalhe: any
@@ -20,10 +22,11 @@ export class PedidoComponent implements OnInit {
   
 
   mostrarPedidos() {
-    this.http.acompanhar().subscribe(data => {
+    this.http.buscarPedidos().subscribe(data => {
       data.forEach(d =>
         this.pedido.push(d)
       )
+      console.log(this.pedido)
     })
     if (this.pedido) {
       this.carregar = true;

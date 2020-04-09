@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-  
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-
-=======
 import { ProductAPI } from './../model/productAPI';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
->>>>>>> c73e427941106c2e08be989eadfc9071baad1516
 
 @Injectable({
   providedIn: 'root'
 })
-<<<<<<< HEAD
 
 export class ProductService {
 
@@ -26,12 +18,12 @@ export class ProductService {
     return this.http.get(`http://localhost:8080/dash/product-id/${code}`)
   }
 
-=======
-export class ProductService {
+
+  
 
 img: string = "../../../assets/Imagem/"
 
-  constructor(private http: HttpClient) { }
+
 
 
   public delete(id){
@@ -53,5 +45,4 @@ img: string = "../../../assets/Imagem/"
   }
     return this.http.post(`/api/create-product`, produto)
   }
->>>>>>> c73e427941106c2e08be989eadfc9071baad1516
 }
