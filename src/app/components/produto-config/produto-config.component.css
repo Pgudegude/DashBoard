@@ -19,3 +19,8 @@ small{
     justify-content: center;
     align-items: center;
 }
+
+#description{
+    height: 150px;
+    resize: none;
+}

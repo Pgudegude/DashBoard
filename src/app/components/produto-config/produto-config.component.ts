@@ -15,13 +15,14 @@ export class ProdutoConfigComponent implements OnInit {
   login: boolean
   usuario: any
   formularioProduto: FormGroup
-
+  formDelete: FormGroup
 
   constructor(private construirForm: FormBuilder, private service: ProductService) { }
 
   ngOnInit() {
     this.criarDadosProduto();
-    this.verificarLogin()
+    this.verificarLogin();
+    this.criarDelete();
   }
 
 enviarProduto(produto: ProductAPI){
@@ -40,9 +41,26 @@ enviarProduto(produto: ProductAPI){
 criarProduto(){
   this.service.create(this.formularioProduto.value).subscribe(()=>{
     alert("Produto criado com sucesso!")
+    this.formularioProduto.reset()
   })
 }
 
+enviarDelete(produto: ProductAPI){
+  return new FormGroup({
+    codProduct: new FormControl(produto.codProduct)
+  })
+}
+
+criarDelete(){
+  this.formDelete = this.construirForm.group({
+    codProduct:[
+      '',
+      Validators.compose([
+        Validators.required
+      ])
+    ]
+  })
+}
 
   criarDadosProduto() {
     this.formularioProduto = this.construirForm.group({
@@ -98,4 +116,15 @@ criarProduto(){
       this.login = false
     }
   }
+
+  deletar() {
+    let id = this.formDelete.value.codProduct
+    if (confirm("Produto sera excluido permanentemente")) {
+      this.service.delete(id).subscribe(()=>{
+        alert("Produto deletado!")
+    this.formDelete.reset()
+      })
+    }
+  }
+
 }

@@ -12,7 +12,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProdutoConfigComponent } from './components/produto-config/produto-config.component';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { SeletorProdutoComponent } from './components/seletor-produto/seletor-produto.component'
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -26,7 +27,8 @@ registerLocaleData(localePt, 'pt');
     HomeComponent,
     NavComponent,
     MenuComponent,
-    ProdutoConfigComponent
+    ProdutoConfigComponent,
+    SeletorProdutoComponent
   ],
   imports: [
     BrowserModule,

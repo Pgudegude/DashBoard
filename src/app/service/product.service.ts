@@ -7,10 +7,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductService {
 
-img: string = "../../../assets/"
+img: string = "../../../assets/Imagem/"
 
   constructor(private http: HttpClient) { }
 
+
+  public delete(id){
+    return this.http.delete(`/api/product/${id}`)
+  }
 
   public create(product: ProductAPI){
   let produto = {
@@ -21,10 +25,10 @@ img: string = "../../../assets/"
       id :product.category,
     },
     valueProduct: product.valueProduct,
-    valueDiscount: product.valueDiscount,
+    valueDiscount: product.valueProduct * 0.7,
     brand: product.brand,
     model: product.model,
   }
-    return this.http.post(`http://localhost:8080/ecommerce/create-product`, produto)
+    return this.http.post(`/api/create-product`, produto)
   }
 }
