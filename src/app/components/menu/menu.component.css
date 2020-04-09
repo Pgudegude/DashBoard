@@ -1,0 +1,23 @@
+
+ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.list-group-item:hover{
+    background: #A7E0D7;
+    color: black;
+    cursor: pointer;
+}
+
+.corpo{
+    background: darkslategray;
+    color: white;
+}
+
+.col-md-9{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

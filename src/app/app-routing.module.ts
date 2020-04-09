@@ -5,6 +5,9 @@ import {PedidoComponent} from './components/pedido/pedido.component';
 import {HomeComponent}   from './components/home/home.component';
 import { ProdutoComponent } from './components/produto/produto.component';
 
+import { ProdutoConfigComponent } from './components/produto-config/produto-config.component';
+
+
 export const ROUTES: Routes = [
   {
     path: "",
@@ -27,8 +30,11 @@ export const ROUTES: Routes = [
     component: PedidoComponent
   },
  
-
+{
  
+    path: "produto_config",
+    component: ProdutoConfigComponent
+  }
 ]
 @NgModule({
   imports: [RouterModule.forRoot(ROUTES)],

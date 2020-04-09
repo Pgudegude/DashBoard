@@ -13,13 +13,11 @@ export class HomeComponent implements OnInit {
   login: boolean
   usuario: any
 
-  constructor(private emissor: EmissorDeEventosService,private route: Router) { }
+  constructor() { }
 
-  deslogar() {
-    sessionStorage.removeItem("usuario")
-    alert("Você saiu do DashBoard")
-    this.emissor.emitirUsuarioLogado()
-    this.route.navigate([""])
+  
+  ngOnInit(){
+    this.verificarLogin()
   }
 
   verificarLogin(){
@@ -31,9 +29,4 @@ export class HomeComponent implements OnInit {
       this.login = false
     }
   }
-
-  ngOnInit(){
-    this.verificarLogin()
-  }
-
 }
