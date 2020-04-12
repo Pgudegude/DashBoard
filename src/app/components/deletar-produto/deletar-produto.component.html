@@ -1,0 +1,6 @@
+<form [formGroup]="formDelete"  (ngSubmit)="criarDelete()">
+    <label for="delete">Deletar:</label>
+    <input class="form-control mb-2" type="text" name="delete" id="delete"
+        placeholder="Insira o codigo do produto" formControlName="codProduct">
+    <button class="btn btn-danger" (click)="deletar()">Excluir</button>
+</form>

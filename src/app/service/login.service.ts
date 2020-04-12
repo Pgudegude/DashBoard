@@ -23,7 +23,7 @@ export class LoginService {
   
   fazerLogin(login: Login) {
     let comunicacao = this.dado(login)
-    return this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
+    return this.http.post(`/api/login`, comunicacao)
       .pipe(
         retry(2),
         catchError(this.handleError)

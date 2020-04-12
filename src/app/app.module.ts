@@ -13,7 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProdutoConfigComponent } from './components/produto-config/produto-config.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { SeletorProdutoComponent } from './components/seletor-produto/seletor-produto.component'
+import { CriarProdutoComponent } from './components/criar-produto/criar-produto.component';
+import { DeletarProdutoComponent } from './components/deletar-produto/deletar-produto.component';
+import { AlterarProdutoComponent } from './components/alterar-produto/alterar-produto.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -32,7 +34,9 @@ registerLocaleData(localePt, 'pt');
     HeaderComponent,
     MenuComponent,
     ProdutoConfigComponent,
-    SeletorProdutoComponent
+    CriarProdutoComponent,
+    DeletarProdutoComponent,
+    AlterarProdutoComponent,
   ],
   imports: [
     BrowserModule,
