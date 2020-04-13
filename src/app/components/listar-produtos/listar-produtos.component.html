@@ -1,0 +1,35 @@
+<div class="col-md-12 m-0 p-0 ">
+    <table class="table">
+        <thead class="thead-dark text-center">
+            <tr>
+                <th scope="col">cod</th>
+                <th scope="col">nome</th>
+                <th scope="col">imagem</th>
+                <th scope="col">marca</th>
+                <th scope="col">modelo</th>
+                <th scope="col">
+                    <select style="background-color: #343a40; color: white; font-weight: bold;">
+                    <option value="" disabled selected>categoria</option>
+                    <option value="2">bola importada</option>
+                    <option value="7">Gourmet</option>
+                    <option value="8">DBZ</option>
+                    <option value="10">Acid Eaters</option>
+                </select></th>
+                <th scope="col">valor</th>
+                <th scope="col">desconto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of produtos" class="text-center">
+                <th scope="row">{{item.codProduct}}</th>
+                <td>{{item.name}}</td>
+                <td><img src={{item.image}} alt={{item.name}} height="30" width="30" title={{item.name}}></td>
+                <td>{{item.brand}}</td>
+                <td>{{item.model}}</td>
+                <td>{{item.category.description}}</td>
+                <td>{{item.valueProduct | currency:"BRL"}}</td>
+                <td>{{item.valueDiscount | currency:"BRL"}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

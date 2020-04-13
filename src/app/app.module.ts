@@ -16,6 +16,10 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { CriarProdutoComponent } from './components/criar-produto/criar-produto.component';
 import { DeletarProdutoComponent } from './components/deletar-produto/deletar-produto.component';
 import { AlterarProdutoComponent } from './components/alterar-produto/alterar-produto.component';
+import { ListarProdutosComponent } from './components/listar-produtos/listar-produtos.component';
+import { ClienteConfigComponent } from './components/cliente-config/cliente-config.component';
+import { AlterarClienteComponent } from './components/alterar-cliente/alterar-cliente.component';
+import { ListarClienteComponent } from './components/listar-cliente/listar-cliente.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -33,6 +37,10 @@ registerLocaleData(localePt, 'pt');
     CriarProdutoComponent,
     DeletarProdutoComponent,
     AlterarProdutoComponent,
+    ListarProdutosComponent,
+    ClienteConfigComponent,
+    AlterarClienteComponent,
+    ListarClienteComponent,
   ],
   imports: [
     BrowserModule,

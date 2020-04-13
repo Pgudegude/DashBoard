@@ -33,7 +33,7 @@ export class DeletarProdutoComponent implements OnInit {
       codProduct: new FormControl(produto.codProduct)
     })
   }
-  
+
 
   criarDelete(){
     this.formDelete = this.construirForm.group({
@@ -45,4 +45,5 @@ export class DeletarProdutoComponent implements OnInit {
       ]
     })
   }
+
 }

@@ -24,21 +24,25 @@ img: string = "../../../assets/Imagem/"
     return this.http.get(`/api/product-id/${code}`)
   }
 
-  public alterar(product: ProductAPI){
-    console.log(product.valueProduct * 0.3);
-    
+  public getProducts() {
+    return this.http.get(`/api/find-product/list`)
+  }
+
+
+  public alterar(prod: ProductAPI){
+
     let produto = {
-      codProduct: product.codProduct,
-      description: product.description,
-      name: product.name,
-      image: this.img+product.image.slice(12, product.image.length),
+      codProduct: prod.codProduct,
+      description: prod.description,
+      name: prod.name,
+      image: this.img+prod.image.slice(12, prod.image.length),
       category:{
-        id :product.category,
+        id :prod.category,
       },
-      valueProduct: product.valueProduct,
-      valueDiscount:  product.valueProduct * 0.3,
-      brand: product.brand,
-      model: product.model,
+      valueProduct: prod.valueProduct,
+      valueDiscount:  prod.valueProduct * 0.3,
+      brand: prod.brand,
+      model: prod.model,
     }
     return this.http.put(`/api/product`,produto)
     }
@@ -53,7 +57,7 @@ img: string = "../../../assets/Imagem/"
       id :product.category,
     },
     valueProduct: product.valueProduct,
-    valueDiscount: product.valueProduct * 0.3,
+    valueDiscount : product.valueProduct * 0.3,
     brand: product.brand,
     model: product.model,
   }
