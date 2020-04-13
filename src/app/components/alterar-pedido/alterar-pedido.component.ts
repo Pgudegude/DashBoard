@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-alterar-pedido',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlterarPedidoComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private fb:FormBuilder) { }
+  alterarUsuario :FormGroup
   ngOnInit(): void {
+    this.criarFormulario()
   }
-
+  criarFormulario(){
+    this.alterarUsuario = this.fb.group({
+      
+    })
+  }
+alterarStatus(){
+  console.log("estou alterando")
+}
 }

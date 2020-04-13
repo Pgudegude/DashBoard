@@ -13,15 +13,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <div *ngFor="let pedidos of pedido">
-                        <tr>
-                            <th scope="row">{{pedidos.request?.date }}</th>
-                            <th scope="row">{{pedidos.request?.id}}</th>
-                            <th scope="row">{{pedidos.request?.price}}</th>
-                            <th scope="row">{{pedidos.request?.payment.status}}</th>
-                            <th scope="row">{{pedidos.request?.statusRequest}}</th>
+                        <tr *ngFor="let pedidos of pedido">
+                            <th scope="row">{{pedidos.detalhe.request?.date }}</th>
+                            <th scope="row">{{pedidos.detalhe.request?.id}}</th>
+                            <th scope="row">{{pedidos.detalhe.request?.price}}</th>
+                            <th scope="row">{{pedidos.detalhe.request?.payment.status}}</th>
+                            <th scope="row">{{pedidos.detalhe.request?.statusRequest[pedidos.quantidade]?.statusRequest}}</th>
                         </tr>
-                    </div>
                 </tbody>
             </table>
         </div>
