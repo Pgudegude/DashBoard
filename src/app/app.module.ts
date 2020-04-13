@@ -15,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProdutoConfigComponent } from './components/produto-config/produto-config.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { SeletorProdutoComponent } from './components/seletor-produto/seletor-produto.component'
+import { SeletorProdutoComponent } from './components/seletor-produto/seletor-produto.component';
+import { CommonModule } from '@angular/common';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -34,6 +35,7 @@ registerLocaleData(localePt, 'pt');
   ],
   imports: [
     BrowserModule,
+    CommonModule, 
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
