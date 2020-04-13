@@ -15,10 +15,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProdutoConfigComponent } from './components/produto-config/produto-config.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { SeletorProdutoComponent } from './components/seletor-produto/seletor-produto.component';
-import { CommonModule } from '@angular/common';
+import { CriarProdutoComponent } from './components/criar-produto/criar-produto.component';
+import { DeletarProdutoComponent } from './components/deletar-produto/deletar-produto.component';
+import { AlterarProdutoComponent } from './components/alterar-produto/alterar-produto.component';
+import { PedidoConfigComponent } from './components/pedido-config/pedido-config.component';
+import { AlterarPedidoComponent } from './components/alterar-pedido/alterar-pedido.component';
+import { ListarPedidoComponent } from './components/listar-pedido/listar-pedido.component';
+import { ClientesConfigComponent } from './components/clientes-config/clientes-config.component';
+import { AlterarClientesComponent } from './components/alterar-clientes/alterar-clientes.component';
+import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
+
 
 
 registerLocaleData(localePt, 'pt');
@@ -29,13 +37,21 @@ registerLocaleData(localePt, 'pt');
     LoginComponent,
     HomeComponent,
     NavComponent,
+    PedidoComponent,
     MenuComponent,
     ProdutoConfigComponent,
-    SeletorProdutoComponent
+    CriarProdutoComponent,
+    DeletarProdutoComponent,
+    AlterarProdutoComponent,
+    PedidoConfigComponent,
+    AlterarPedidoComponent,
+    ListarPedidoComponent,
+    ClientesConfigComponent,
+    AlterarClientesComponent,
+    ListarClientesComponent
   ],
   imports: [
     BrowserModule,
-    CommonModule, 
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,

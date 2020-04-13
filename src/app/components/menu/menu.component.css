@@ -21,3 +21,12 @@ ul{
     justify-content: center;
     align-items: center;
 }
+
+a{
+    text-decoration: none;
+}
+
+.alinhar{
+ display: flex;
+ justify-content: space-between;
+}

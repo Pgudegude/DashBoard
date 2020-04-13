@@ -1,26 +1,27 @@
 <div class="col-md-12 p-0 corpo" style="height: 100vh;">
-    <div class="card-header corpo" style="width:auto;">
+    <div class="card-header corpo  alinhar" style="width:auto;">
         DashBoard
+        <img src="../../../assets/Imagem/dashboard.png" alt="Faturamento">
     </div>
     <div class="corpo" style="width: auto;">
         <ul class="list-group list-group-flush corpo">
-            <a>
-                <li class="list-group-item corpo">Meus clientes</li>
+            <a routerLink="/clientes">
+                <li class="list-group-item corpo alinhar">Meus clientes <img src="../../../assets/Imagem/support.png" alt="clientes"></li>
             </a>
-            <a>
-                <li class="list-group-item corpo">Pedidos</li>
+            <a  routerLink="/pedido">
+                <li class="list-group-item corpo alinhar">Pedidos <img src="../../../assets/Imagem/request.png" alt="pedidos"></li>
             </a>
             <a routerLink="/produto_config">
-                <li class="list-group-item corpo">Produtos</li>
+                <li class="list-group-item corpo alinhar">Produtos <img src="../../../assets/Imagem/order.png" alt="Faturamento"></li>
             </a>
             <a>
-                <li class="list-group-item corpo">Faturamento</li>
+                <li class="list-group-item corpo alinhar">Faturamento <img src="../../../assets/Imagem/graph.png" alt="Faturamento"></li>
             </a>
             <a>
-                <li class="list-group-item corpo">Dados</li>
+                <li class="list-group-item corpo alinhar">Dados <img src="../../../assets/Imagem/user.dash.png" alt="dados"></li>
             </a>
             <a (click)="deslogar()">
-                <li class="list-group-item corpo"><img src="../../../assets/exit.png" alt="sair" title="sair"></li>
+                <li class="list-group-item corpo"><img src="../../../assets/Imagem/exit.png" alt="sair" title="sair"></li>
             </a>
         </ul>
     </div>

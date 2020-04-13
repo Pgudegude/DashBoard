@@ -6,6 +6,8 @@ import {HomeComponent}   from './components/home/home.component';
 import { ProdutoComponent } from './components/produto/produto.component';
 
 import { ProdutoConfigComponent } from './components/produto-config/produto-config.component';
+import { PedidoConfigComponent } from './components/pedido-config/pedido-config.component';
+import { ClientesConfigComponent } from './components/clientes-config/clientes-config.component';
 
 
 export const ROUTES: Routes = [
@@ -23,11 +25,14 @@ export const ROUTES: Routes = [
   },
   {
     path: "home/pedido",
-    component: PedidoComponent
+    component: PedidoConfigComponent
   },
   {
     path: "pedido",
-    component: PedidoComponent
+    component: PedidoConfigComponent
+  },{
+    path: "clientes",
+    component: ClientesConfigComponent
   },
  
 {

@@ -1,0 +1,32 @@
+.semborda{
+    border: none;
+}
+
+small{
+    color: red;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948;
+    }
+    .ng-invalid:not(form)  {
+    border-left: 5px solid #A94442;
+    }
+    
+
+#centro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#description{
+    height: 150px;
+    resize: none;
+}
+
+#imagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

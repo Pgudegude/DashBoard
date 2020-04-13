@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Detalhe } from 'src/app/model/detalhe';
+import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
                 
 
 
@@ -13,18 +14,25 @@ export class PedidoComponent implements OnInit {
   constructor(private http: PedidoService) {
   }
  
-  pedido: Detalhe[] = []
+  detalhe: Detalhe[]
   carregar: boolean
-  vazio = []
-  detalhe: any
-
-
+  pedido:PedidoDetalhe[] = []
   
+
+  adaptar( det: Detalhe){
+return {
+  "detalhe":det,
+  "quantidade":det.request.statusRequest.length
+}
+  }
 
   mostrarPedidos() {
     this.http.buscarPedidos().subscribe(data => {
-      data.forEach(d =>
-        this.pedido.push(d)
+      data.forEach(d =>{
+        console.log(this.pedido)
+        this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
+        console.log(d)
+      }
       )
       console.log(this.pedido)
     })
