@@ -7,8 +7,6 @@ export class Cliente {
       public telefone?: number,
       public email?: string,
       public senha?: string,
-      public confirmaSenha?: string,
-      public confirmaEmail?: string,
       public id?:number
       ) {}  
 }
