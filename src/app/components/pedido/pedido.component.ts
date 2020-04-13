@@ -47,8 +47,14 @@ return {
    
     this.mostrarPedidos()
   }
-
-
- 
+  dets : any [] = []
+  posicao: any 
+  details(pedido) {
+      this.dets=[]
+      this.detalhe
+      this.posicao = this.pedido.indexOf(pedido), console.log(this.posicao)  
+      this.dets.push(pedido)
+      console.log(this.dets)
+  }
 
 }
