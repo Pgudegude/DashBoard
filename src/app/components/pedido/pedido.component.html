@@ -1,77 +1,29 @@
-<div class="container mt-5 mb-5">
-    <h4 class="font-weight-bolder text-center mb-3"><strong>LISTA DE PEDIDOS</strong></h4>
-    <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        DETALHES
-    </button>
-    <div class="row mt-3">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-6">
-                    <div class="card shadow p-0 mb-3">
-                        <h6 class=" text-center">PEDIDO SOLICITADO </h6>
-                        <div class="card-body p-1">
-                            <div id="teste" class="row">
-                                <div class="col-md-12">
-                                    <table class="table">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th class="border-0 text-uppercase small font-weight-bold">
-                                                    ID
-                                                </th>
-                                                <th class="border-0 text-uppercase small font-weight-bold">
-                                                    Valor
-                                                </th>
-                                                <th class="border-0 text-uppercase small font-weight-bold">
-                                                    Cliente
-                                                </th>
-                                                <th class="border-0 text-uppercase small font-weight-bold">
-                                                    Endereço
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="">
-                                            <tr class="text-center">
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="collapse" id="collapseExample">
-                                        <div class="card card-body py-0">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="border-0 text-uppercase small font-weight-bold">
-                                                            Produto
-                                                        </th>
-                                                        <th class="border-0 text-uppercase small font-weight-bold">
-                                                            Quantidade
-                                                        </th>
-                                                        <th class="border-0 text-uppercase small font-weight-bold">
-                                                            Data
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<main>
+    <div class="container">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Pedido</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Status Pagamento</th>
+                        <th scope="col">Status Pedido</th>
+                        <th scope="col">Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div *ngFor="let pedidos of pedido">
+                        <tr>
+                            <th scope="row">{{pedidos.request?.date }}</th>
+                            <th scope="row">{{pedidos.request?.id}}</th>
+                            <th scope="row">{{pedidos.request?.price}}</th>
+                            <th scope="row">{{pedidos.request?.payment.status}}</th>
+                            <th scope="row">{{pedidos.request?.statusRequest}}</th>
+                        </tr>
                     </div>
-                </div>
-
-            </div>
+                </tbody>
+            </table>
         </div>
-
     </div>
-</div>
+</main>

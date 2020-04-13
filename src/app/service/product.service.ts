@@ -14,6 +14,9 @@ img: string = "../../../assets/Imagem/"
 
   constructor(private http: HttpClient) { }
 
+  public getProducts() {
+    return this.http.get(`http://localhost:8080/dash/find-product`)
+  }
 
   public delete(id){
     return this.http.delete(`/api/product/${id}`)

@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { PedidoComponent } from './components/pedido/pedido.component';
+import { ProdutoComponent } from './components/produto/produto.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
@@ -16,11 +18,16 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { CriarProdutoComponent } from './components/criar-produto/criar-produto.component';
 import { DeletarProdutoComponent } from './components/deletar-produto/deletar-produto.component';
 import { AlterarProdutoComponent } from './components/alterar-produto/alterar-produto.component';
+import { PedidoConfigComponent } from './components/pedido-config/pedido-config.component';
+import { AlterarPedidoComponent } from './components/alterar-pedido/alterar-pedido.component';
+import { ListarPedidoComponent } from './components/listar-pedido/listar-pedido.component';
+import { ClientesConfigComponent } from './components/clientes-config/clientes-config.component';
+import { AlterarClientesComponent } from './components/alterar-clientes/alterar-clientes.component';
+import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
-import { PedidoComponent } from './components/pedido/pedido.component';
-import { HeaderComponent } from './components/header/header.component';
+
 
 registerLocaleData(localePt, 'pt');
 
@@ -31,12 +38,17 @@ registerLocaleData(localePt, 'pt');
     HomeComponent,
     NavComponent,
     PedidoComponent,
-    HeaderComponent,
     MenuComponent,
     ProdutoConfigComponent,
     CriarProdutoComponent,
     DeletarProdutoComponent,
     AlterarProdutoComponent,
+    PedidoConfigComponent,
+    AlterarPedidoComponent,
+    ListarPedidoComponent,
+    ClientesConfigComponent,
+    AlterarClientesComponent,
+    ListarClientesComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +57,8 @@ registerLocaleData(localePt, 'pt');
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
-    NgxMaskModule.forRoot(options)
-
+    NgxMaskModule.forRoot(options),
+    
   ],
   providers: [{
     provide: LOCALE_ID,

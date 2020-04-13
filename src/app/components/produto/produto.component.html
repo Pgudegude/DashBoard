@@ -1,0 +1,27 @@
+<table id="produto" class="table">
+    <thead id="tabela" class=" text-center">
+        <tr>
+            <th scope="col-md-3">Codigo</th>
+            <th scope="col-md-3">Produto</th>
+            <th scope="col-md-3">Descrição</th>
+            <th scope="col-md-3">Imagem</th>
+            <th scope="col-md-3">Valor</th>
+            <th scope="col-md-3">Valor com desconto</th>
+
+        </tr>
+    </thead>
+    <tbody class="text-center" *ngFor="let produto of product | slice: 0:10;">
+        <tr>
+            <th class="text-center" scope="row">{{produto.codProduct}}</th>
+            <td class="text-center">{{produto.name}} </td>
+            <td class="text-justify"> {{produto.description}}</td>
+            <td class="text-center"><img class="card-img-top" [src]="produto.image" alt={{produto.name}} title={{produto.name}}></td>
+            <td class="text-center">{{produto.valueProduct }}</td>
+            <td class="text-center">{{produto.valueDiscount }}</td>
+
+        </tr>
+
+
+
+    </tbody>
+</table>
