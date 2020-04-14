@@ -21,14 +21,14 @@ return {
   }
   mostrarPedidos() {
     this.http.buscarPedidos().subscribe(data => {
+   
       data.forEach(d =>{
-        console.log(this.pedido)
-        console.log(d)
+      
         this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
-        
+
       }
       )
-      console.log(this.pedido)
+     
     })
     if (this.pedido) {
       this.carregar = true;

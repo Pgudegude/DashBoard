@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { EnderecoService } from './endereco.service';
 import { Carrinho } from 'src/app/model/carrinho';
 import { Detalhe } from 'src/app/model/detalhe';
+import { StatusRequest } from '../model/StatusRequest';
 
 
 
@@ -27,16 +28,16 @@ function adaptar(data: any[]) {
 function adaptar3(data: any[]) {
   console.log(data)
   return data.map(
-    elem => new Detalhe(elem.code,
-      elem.valueProduct,
-      elem.valueFreight,
-      elem.amount,
-      elem.codProduct,
-      new Pedido(elem.request.price, elem.request.priceFreight, elem.request.statusRequest, elem.request.date
-        , elem.request.client, elem.request.payment, elem.request.name, elem.request.phone,
-        elem.request.address, elem.request.id)
-    )
-  )
+    elem=> new Detalhe(elem.code,
+    elem.valueProduct,
+    elem.valueFreight,
+    elem.amount, 
+    elem.codProduct, 
+    new Pedido(elem.request.price, 
+      elem.request.priceFreight,
+      elem.request.date,elem.request.client,
+       elem.request.payment, elem.request.name, elem.request.phone,elem.request.address, elem.request.statusRequest, elem.request.id)
+  ))
 }
 
 @Injectable({
@@ -67,12 +68,11 @@ export class PedidoService {
 
   public envPedido(pedido: Pedido) {
     let comunicacao = this.adaptador2(pedido)
-    let url = this.http.post('http://localhost:8080/dash/request', comunicacao);
+    let url = this.http.post('/api/request', comunicacao);
     return url.pipe(map(
       dados => dados
     ));
   }
-
 
   public envItemCart(pedido: Pedido, carrinho: Carrinho[]) {
     for (let i = 0; i < carrinho.length; i++) {
@@ -83,7 +83,7 @@ export class PedidoService {
         "valueProduct": carrinho[i].produto.valueProduct,
         "request": pedido
       }
-      let url = this.http.post('http://localhost:8080/dash/create-itemcart', comunicacao)
+      let url = this.http.post('/api/create-itemcart', comunicacao)
       url.pipe(
         map(
           dados => dados
@@ -96,31 +96,23 @@ export class PedidoService {
     }
   }
 
-  details(code: number) {
-    return this.http.get(`http://localhost:8080/dash/find-itemcart/${code}`).pipe(
-      map(adaptar3)
-    )
+details(code: number){
+  return this.http.get(`/api/find-itemcart/${code}`).pipe(
+    map(adaptar3)
+  )
   }
-  buscarPedidos() {
-    return this.http.get("http://localhost:8080/dash/buscarRequest").pipe(
-
-      map(adaptar3)
-    )
-  }
-
-  buscarPedidoId(id){
-    return this.http.get("/api/buscarPedidoID/"+id).pipe(
-    )
-  }
-  alterar(pedido: Detalhe) {
-
-
-    let status = {
-      date: pedido.request.date,
-      request: pedido.request.statusRequest,
-      payment: pedido.request.payment.status
-      
-    }
-    return this.http.post(`/api/adicionar-statusRequest`,status)
-  }
+buscarPedidos(){
+  return this.http.get("/api/buscarRequest").pipe(
+    map(adaptar3)
+  )
 }
+
+buscarPedidoId(id){
+  return this.http.get("/api/buscarPedidoID/"+id).pipe(
+  )
+}
+alterar(pedido: StatusRequest) {
+  return this.http.post(`/api/adicionar-statusRequest`,pedido)
+}
+}
+

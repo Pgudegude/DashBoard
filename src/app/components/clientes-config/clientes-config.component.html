@@ -6,21 +6,23 @@
         <div class="col-md-10 p-0 m-0">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#alterar" role="tab"
-                        aria-controls="alterar" aria-selected="false">Alterar</a>
+                    <a class="nav-link active" id="alterar-tab" data-toggle="tab" href="#alterar" role="tab"
+                        aria-controls="alterar" aria-selected="true">Alterar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#puxar" role="tab"
+                    <a class="nav-link" id="puxar-tab" data-toggle="tab" href="#puxar" role="tab"
                         aria-controls="puxar" aria-selected="false">Listar</a>
                 </li>
             </ul>
+            <div class="tab-content" id="myTabContent">
             <!-- função alterar -->
-            <div class="row col-12 m-0 p-0 tab-pane fade" id="alterar" role="tabpanel" aria-labelledby="alterar-tab">
-                <app-alterar-clientes></app-alterar-clientes>
+            <div class="row col-12 m-0 p-0 tab-pane fade show active" id="alterar" role="tabpanel" aria-labelledby="alterar-tab">
+                <app-alterar-cliente></app-alterar-cliente>
             </div>
             <!--Função listar-->
             <div class="row col-12 m-0 p-0 tab-pane fade" id="puxar" role="tabpanel" aria-labelledby="puxar-tab">
                 <app-listar-clientes></app-listar-clientes>
+            </div>
             </div>
         </div>
     </div>

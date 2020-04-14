@@ -10,6 +10,7 @@ import { PedidoConfigComponent } from './components/pedido-config/pedido-config.
 import { ClientesConfigComponent } from './components/clientes-config/clientes-config.component';
 
 
+
 export const ROUTES: Routes = [
   {
     path: "",
@@ -39,6 +40,9 @@ export const ROUTES: Routes = [
  
     path: "produto_config",
     component: ProdutoConfigComponent
+  },{
+    path: "cliente_config",
+    component: ClientesConfigComponent
   }
 ]
 @NgModule({

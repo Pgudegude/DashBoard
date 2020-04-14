@@ -5,25 +5,25 @@
     <div class="row p-0 m-0 mr-1 ml-1">
         <div class="col-md-2 p-0 m-0">
             <div class="form-group">
-                <label for="name">Nome: </label>
-                <input class="form-control" type="text" id="name" name="name"
+                <label for="nome">Nome: </label>
+                <input class="form-control" type="text" id="nome" name="name"
                     placeholder="Nome do produto" required formControlName="name">
             </div>
         </div>
         <div class="col-md-4 p-0 m-0 ml-3">
             <div class="form-group">
-                <label for="image">imagem: </label>
-                <input class="form-control semborda" (change)="mostrarImagem()" type="file" id="image" name="image" required
+                <label for="img">imagem: </label>
+                <input class="form-control semborda" (change)="mostrarImagem()" type="file" id="img" name="image" required
                     formControlName="image">
             </div>
         </div>
         <div id="imagem" class="col-md-1 p-0 m-0">
-            <img src="{{imagem}}" height="30" width="30">
+            <img src="{{imagem}}" height="35" width="35">
         </div>
         <div class="col-md-3 p-0 m-0 ml-3">
             <div class="form-group">
-                <label for="category">Categoria: </label>
-                <select id="category" name="category" formControlName="category"
+                <label for="categoria">Categoria: </label>
+                <select id="categoria" name="category" formControlName="category"
                     class="form-control">
                     <option value="" disabled selected>Selecionar categoria</option>
                     <option value="2">bola importada</option>
@@ -35,8 +35,8 @@
         </div>
         <div class="col-md-12 p-0 m-0">
             <div class="form-group">
-                <label for="description">Descrição: </label>
-                <textarea class="form-control" type="text" id="description" name="description"
+                <label for="descricao">Descrição: </label>
+                <textarea class="form-control" type="text" id="descricao" name="description"
                     placeholder="Digite a descrição" required formControlName="description">
         </textarea>
             </div>
@@ -44,23 +44,31 @@
         <div class="d-flex justify-content-between col-12">
         <div class="col-md-3 p-0 m-0">
             <div class="form-group">
-                <label for="valueProduct">Valor R$: </label>
-                <input class="form-control" id="valueProduct" name="valueProduct"
-                    placeholder="00.00" type="tel" required formControlName="valueProduct">
+                <label for="value">Valor R$: </label>
+                <input class="form-control" id="value" name="valueProduct"
+                    placeholder="00.00" type="tel" (keyup)="desconto()" required formControlName="valueProduct">
                 <small>*separe as casa decimais com ponto</small>
+            </div>
+        </div>
+        <div class="col-md-2 p-0 m-0 ml-2">
+            <div class="form-group">
+                <label for="desconto">Valor com desconto R$: </label>
+                <input class="form-control" id="desconto" name="valueDiscount"
+                    placeholder="00.00" type="tel" formControlName="valueDiscount">
+                <small>*apenas para visualização</small>
             </div>
         </div>
         <div class="col-md-3 p-0 m-0 ml-3">
             <div class="form-group">
-                <label for="brand">Marca: </label>
-                <input class="form-control" id="	brand" name="brand" placeholder="Mike Cong"
+                <label for="marca">Marca: </label>
+                <input class="form-control" id="marca" name="brand" placeholder="Mike Cong"
                     type="tel" required formControlName="brand">
             </div>
         </div>
         <div class="col-md-3 p-0 m-0 ml-3">
             <div class="form-group">
-                <label for="model">Modelo: </label>
-                <input class="form-control" placeholder="buligão" type="tel" id="model" name="model"
+                <label for="modelo">Modelo: </label>
+                <input class="form-control" placeholder="buligão" type="tel" id="modelo" name="model"
                     required formControlName="model">
             </div>
         </div>

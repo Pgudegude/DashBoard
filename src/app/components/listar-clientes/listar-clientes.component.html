@@ -1,1 +1,28 @@
-<p>listar-clientes works!</p>
+<main>
+    <div class="container-fluid">
+        <div>
+            <table class="table table-striped m-0">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Nascimento</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let cliente of clientes">
+                            <th scope="row">{{cliente.id}}</th>
+                            <th scope="row">{{cliente.nomeCompleto}}</th>
+                            <th scope="row">{{cliente.cpf}}</th>
+                            <th scope="row">{{cliente.dataDeNascimento  | date:"dd/MM/yyyy"}}</th>
+                            <th scope="row">{{cliente.telefone}}</th>
+                            <th scope="row">{{cliente.email}}</th>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
