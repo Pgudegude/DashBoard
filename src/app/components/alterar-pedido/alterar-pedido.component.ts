@@ -25,7 +25,7 @@ export class AlterarPedidoComponent implements OnInit {
   }
   puxarPedido() {
     let dados = this.alterarPedido.value.codProduct
-    this.service.buscarPedido(dados).subscribe((data: any) => {
+    this.service.buscarPedidos().subscribe((data: any) => {
       this.alterarPedido.controls["code"].patchValue(data[0].code)
       this.alterarPedido.controls["name"].patchValue(data[0].detalhe.codProduct.name)
       this.alterarPedido.controls["address"].patchValue(data[0].address)
