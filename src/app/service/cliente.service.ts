@@ -51,4 +51,8 @@ public alterar(client: Cliente){
     return url
   }
 
+
+  listarCliente(){
+    return this.http.get(`/api/find-client/list`)
+  }
 }
