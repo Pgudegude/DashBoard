@@ -29,7 +29,7 @@ import { Endereco } from '../model/endereco';
 export class ClienteService {
 
   listarClientes(){
-    return this.http.get("http://localhost:8080/dash/find-client/list").pipe(map(adaptarCliente))
+    return this.http.get("/api/find-client/list").pipe(map(adaptarCliente))
   }
   constructor(private http: HttpClient, private httpAddress : EnderecoService) { }
 
@@ -69,7 +69,7 @@ public alterar(client: Cliente){
     let client = this.clienteBanco(cliente)
     let address = this.httpAddress.enderecoBanco(endereco)
     let comunicacao = {client,address}
-    let url = this.http.post<any>("http://localhost:8080/ecommerce/create-client-address", comunicacao);
+    let url = this.http.post<any>("/api/ecommerce/create-client-address", comunicacao);
     return url
   }
 

@@ -27,7 +27,7 @@ export class EnderecoService {
 
   public insertEndereco(endereco: Endereco, cliente: Cliente) {
     let comunicacao = this.enderecoBanco(endereco)
-    let url = this.http.post<any>(`http://localhost:8080/ecommerce/create-address/${cliente.id}`, comunicacao);
+    let url = this.http.post<any>(`/api/ecommerce/create-address/${cliente.id}`, comunicacao);
     return url.pipe(map(
       dados => dados
     ));

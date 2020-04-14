@@ -38,7 +38,7 @@ export class LoginService {
     let comunicacao = this.dado(login)
 
     // let url = this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
-    return this.http.post(`http://localhost:8080/ecommerce/login`, comunicacao)
+    return this.http.post(`/api/ecommerce/login`, comunicacao)
       .pipe(
         retry(2),
 
@@ -46,14 +46,14 @@ export class LoginService {
       )
   }
   pegarEndereco(cliente: Cliente) {
-    return this.http.post(`http://localhost:8080/ecommerce/find-Client-Address`, cliente)
+    return this.http.post(`/api/ecommerce/find-Client-Address`, cliente)
       .pipe(
         map(adaptar
         )
       )
   }
   enviarSenha(email:string){
-    return this.http.post(`http://localhost:8080/ecommerce/email-send`,email)
+    return this.http.post(`/api/ecommerce/email-send`,email)
   }
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';

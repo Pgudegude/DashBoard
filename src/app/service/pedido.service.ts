@@ -62,7 +62,7 @@ export class PedidoService {
 
   public envPedido(pedido: Pedido) {
     let comunicacao = this.adaptador2(pedido)
-    let url = this.http.post('http://localhost:8080/dash/request', comunicacao);
+    let url = this.http.post('/api/request', comunicacao);
     return url.pipe(map(
       dados => dados
     ));
@@ -78,7 +78,7 @@ export class PedidoService {
         "valueProduct": carrinho[i].produto.valueProduct,
         "request": pedido
       }
-      let url = this.http.post('http://localhost:8080/dash/create-itemcart', comunicacao)
+      let url = this.http.post('/api/create-itemcart', comunicacao)
       url.pipe(
         map(
           dados => dados
@@ -92,12 +92,12 @@ export class PedidoService {
   }
 
 details(code: number){
-  return this.http.get(`http://localhost:8080/dash/find-itemcart/${code}`).pipe(
+  return this.http.get(`/api/find-itemcart/${code}`).pipe(
     map(adaptar3)
   )
   }
 buscarPedidos(){
-  return this.http.get("http://localhost:8080/dash/buscarRequest").pipe(
+  return this.http.get("/api/buscarRequest").pipe(
     map(adaptar3)
   )
 }
