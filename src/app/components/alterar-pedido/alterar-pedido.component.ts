@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoService } from 'src/app/service/pedido.service';
+import * as moment from 'moment'
+
 
 @Component({
   selector: 'app-alterar-pedido',
@@ -14,41 +16,60 @@ export class AlterarPedidoComponent implements OnInit {
   alterarPedido: FormGroup
 
   ngOnInit(): void {
-    this.alteraçao()
+    this.alteracao()
   }
 
   enviarAlteracao(pedido: Detalhe) {
     return new FormGroup({
-      status: new FormControl(pedido.request.statusRequest),
+      request: new FormControl(pedido.request.statusRequest),
       payment: new FormControl(pedido.request.payment.status)
     })
   }
+
+  data: Date = new Date()
+  mes = this.data.getUTCMonth()
+  dia = this.data.getUTCDate()
+  date: any
   puxarPedido() {
-    let dados = this.alterarPedido.value.codProduct
-    this.service.buscarPedidos().subscribe((data: any) => {
-      this.alterarPedido.controls["code"].patchValue(data[0].code)
-      this.alterarPedido.controls["name"].patchValue(data[0].codProduct.name)
-      this.alterarPedido.controls["address"].patchValue(data[0].address)
-      this.alterarPedido.controls["date"].patchValue(data[0].date)
-      this.alterarPedido.controls["amount"].patchValue(data[0].amount)
-      this.alterarPedido.controls["valueProduct"].patchValue(data[0].valueProduct)
-      this.alterarPedido.controls["payment"].patchValue(data[0].payment.status)
-      this.alterarPedido.controls["request"].patchValue(data[0].request.statusRequest)
+    let dados = this.alterarPedido.value.Detalhe
+    this.service.buscarPedidoId(this.alterarPedido.value.code).subscribe((data: any) => {
+       this.alterarPedido.controls["address"].patchValue(data.address.logradouro + ", "+ data.address.number)
+       
+       if(this.mes<10 && this.dia<10){
+         this.date = this.data.getFullYear()+"-0"+this.mes+"-0"+this.dia
+
+         this.alterarPedido.controls["date"].patchValue(this.date)
+       }
+       if(this.mes>9 && this.dia<10){
+       this.date = this.data.getFullYear()+"-"+this.mes+"-0"+this.dia
+       this.alterarPedido.controls["date"].patchValue(this.date)
+      }
+      if(this.mes<10 && this.dia>9){
+         this.date = this.data.getFullYear()+"-0"+this.mes+"-"+this.dia
+
+         this.alterarPedido.controls["date"].patchValue(this.date)
+      }
+      if(this.mes>9 && this.dia>9){
+         this.date = this.data.getFullYear()+"-"+this.mes+"-"+this.dia
+
+         this.alterarPedido.controls["date"].patchValue(this.date)
+      }
+       console.log(data)
+     
+      this.alterarPedido.controls["valueProduct"].patchValue(data.price)
+      this.alterarPedido.controls["status"].patchValue(data.payment.status)
+    
+      this.alterarPedido.controls["statusRequest"].patchValue(data.statusRequest[data.statusRequest.length-1].statusRequest)
     })
   }
-  alteraçao() {
+  alteracao() {
     this.alterarPedido = this.fb.group({
       code: [
         '',
         Validators.compose([
           Validators.required
         ])],
-      name: [
-        '',
-        Validators.compose([
-          Validators.required
-        ])],
-      address: [
+          address: [
         '',
         Validators.compose([
           Validators.required
@@ -58,22 +79,18 @@ export class AlterarPedidoComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])],
-      amount: [
-        '',
-        Validators.compose([
-          Validators.required
-        ])],
+     
       valueProduct: [
         '',
         Validators.compose([
           Validators.required
         ])],
-      payment: [
+      status: [
         '',
         Validators.compose([
           Validators.required
         ])],
-      request: [
+      statusRequest: [
         '',
         Validators.compose([
           Validators.required
@@ -83,7 +100,7 @@ export class AlterarPedidoComponent implements OnInit {
   alterarStatus() {
     if (confirm("Confirme suas alterações!")) {
       this.service.alterar(this.alterarPedido.value).subscribe(() => {
-        alert("Produto alterado!")
+        alert("Pedido alterado!")
         this.alterarPedido.reset()
 
       })

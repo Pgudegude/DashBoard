@@ -108,18 +108,19 @@ export class PedidoService {
     )
   }
 
-  public alterar(pedido: Pedido) {
-
-
-    let produto = {
-      payment: pedido.payment,
-      statusRequest: pedido.statusRequest
-
-
-    }
-    return this.http.put(`/api/buscarRequest`, produto)
+  buscarPedidoId(id){
+    return this.http.get("/api/buscarPedidoID/"+id).pipe(
+    )
   }
+  alterar(pedido: Detalhe) {
 
 
-
+    let status = {
+      date: pedido.request.date,
+      request: pedido.request.statusRequest,
+      payment: pedido.request.payment.status
+      
+    }
+    return this.http.post(`/api/adicionar-statusRequest`,status)
+  }
 }
