@@ -24,17 +24,18 @@ function adaptar(data: any[]) {
   )
 }
 
-function adaptar3(data:any[]){
+function adaptar3(data: any[]) {
+  console.log(data)
   return data.map(
-    elem=> new Detalhe(elem.code,
-    elem.valueProduct,
-    elem.valueFreight,
-    elem.amount, 
-    elem.codProduct, 
-    new Pedido(elem.request.price, elem.request.priceFreight, elem.request.statusRequest, elem.request.date
-      ,elem.request.client, elem.request.payment, elem.request.name, elem.request.phone,
-      elem.request.address, elem.request.id)
-      )
+    elem => new Detalhe(elem.code,
+      elem.valueProduct,
+      elem.valueFreight,
+      elem.amount,
+      elem.codProduct,
+      new Pedido(elem.request.price, elem.request.priceFreight, elem.request.statusRequest, elem.request.date
+        , elem.request.client, elem.request.payment, elem.request.name, elem.request.phone,
+        elem.request.address, elem.request.id)
+    )
   )
 }
 
@@ -42,7 +43,11 @@ function adaptar3(data:any[]){
   providedIn: 'root'
 })
 export class PedidoService {
-  constructor(private http: HttpClient, private httpAddress: EnderecoService) { }
+  constructor(public http: HttpClient, private httpAddress: EnderecoService) { }
+
+  public buscarPedido(code: number) {
+    return this.http.get(`/api/buscarRequest/${code}`)
+  }
 
   adaptador2 = (pedido: Pedido) => {
     return {
@@ -91,16 +96,30 @@ export class PedidoService {
     }
   }
 
-details(code: number){
-  return this.http.get(`http://localhost:8080/dash/find-itemcart/${code}`).pipe(
-    map(adaptar3)
-  )
+  details(code: number) {
+    return this.http.get(`http://localhost:8080/dash/find-itemcart/${code}`).pipe(
+      map(adaptar3)
+    )
   }
-buscarPedidos(){
-  return this.http.get("http://localhost:8080/dash/buscarRequest").pipe(
-    map(adaptar3)
-  )
-}
+  buscarPedidos() {
+    return this.http.get("http://localhost:8080/dash/buscarRequest").pipe(
+
+      map(adaptar3)
+    )
+  }
+
+  public alterar(pedido: Pedido) {
+
+
+    let produto = {
+      payment: pedido.payment,
+      statusRequest: pedido.statusRequest
+
+
+    }
+    return this.http.put(`/api/buscarRequest`, produto)
+  }
+
 
 
 }
