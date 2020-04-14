@@ -1,9 +1,47 @@
-<main>
-    <form [formGroup]="alterarUsuario" (ngSubmit)="alterarStatus()">
-        <div class="form-group">
-            <label for="idPedido">Código do pedido</label>
-            <input type="text" name="idPedido" id="idPedido" placeholder="Digite apenas números">
+<form method="POST" [formGroup]="alterarPedido" (ngSubmit)=" alterarStatus()" class="p-2 ">
+    <div class="form-row ">
+        <div class="form-group col-md-6 ">
+            <label for="code">Pedido: </label>
+            <input class="form-control" (blur)="puxarPedido()" type="tel" id="code" name="code" formControlName="code">
         </div>
-
-    </form>
-</main>
+        <div class="form-group col-md-6 ">
+            <label for="date">Data</label>
+            <input type="date" class="form-control" id="date" formControlName="date">
+        </div>
+    </div>
+    <div class=" form-row ">
+        <div class=" form-group col-md-6 ">
+            <label for="address">Endereço</label>
+            <input type="text " class="form-control " readonly=“true” id="address" formControlName="address">
+        </div>
+        <div class=" form-group col-md-6 ">
+            <label for="valueProduct">Valor</label>
+            <input type="text" class="form-control" readonly=“true” id="valueProduct" formControlName="valueProduct">
+        </div>
+    </div>
+    <div class=" form-row ">
+        <div class="form-group col-md-6 "  >
+            <label for="status">Status Pagamento</label>
+            <select formControlName="status"  class="form-control" id="status">
+                <option value="aguardando aprovação">aguardando aprovação</option>
+                <option value="Pagamento Confirmado">Pagamento Confirmado</option>
+                <option value="Pagamento Recusado">Pagamento recusado</option>
+            </select>
+        </div>
+        <div class=" form-group col-md-6 ">
+            <label for="statusRequest">Status Pedido</label>
+            <select  class="form-control " id="statusRequest" formControlName="statusRequest">
+                <option value="Aguardando Pagamento">Aguardando Pagamento</option>
+                <option value="pagamento foi aprovado">pagamento aprovado</option>
+                <option value="em separação">em separação</option>
+                <option value="entregue a transportadora">entregue a transportadora</option>
+                <option value="saiu para entrega ao destinatário">saiu para entrega ao destinatário</option>
+                <option value="entregue">entregue</option>
+                <option value="cancelado">cancelado</option>
+            </select>
+        </div>
+    </div>
+    <div id="centro" class="col-md-12 mt-3 text-center">
+        <button class="btn btn-outline-info col-md-3">Alterar</button>
+    </div>
+</form>

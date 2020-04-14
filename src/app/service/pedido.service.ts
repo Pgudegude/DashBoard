@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { EnderecoService } from './endereco.service';
 import { Carrinho } from 'src/app/model/carrinho';
 import { Detalhe } from 'src/app/model/detalhe';
+import { StatusRequest } from '../model/StatusRequest';
 
 
 
@@ -31,11 +32,11 @@ function adaptar3(data:any[]){
     elem.valueFreight,
     elem.amount, 
     elem.codProduct, 
-    new Pedido(elem.request.price, elem.request.priceFreight, elem.request.statusRequest, elem.request.date
-      ,elem.request.client, elem.request.payment, elem.request.name, elem.request.phone,
-      elem.request.address, elem.request.id)
-      )
-  )
+    new Pedido(elem.request.price, 
+      elem.request.priceFreight,
+      elem.request.date,elem.request.client,
+       elem.request.payment, elem.request.name, elem.request.phone,elem.request.address, elem.request.statusRequest, elem.request.id)
+  ))
 }
 
 @Injectable({
@@ -67,7 +68,6 @@ export class PedidoService {
       dados => dados
     ));
   }
-
 
   public envItemCart(pedido: Pedido, carrinho: Carrinho[]) {
     for (let i = 0; i < carrinho.length; i++) {
@@ -102,5 +102,12 @@ buscarPedidos(){
   )
 }
 
-
+buscarPedidoId(id){
+  return this.http.get("/api/buscarPedidoID/"+id).pipe(
+  )
 }
+alterar(pedido: StatusRequest) {
+  return this.http.post(`/api/adicionar-statusRequest`,pedido)
+}
+}
+

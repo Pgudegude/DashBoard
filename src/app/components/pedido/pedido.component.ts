@@ -28,13 +28,14 @@ return {
 
   mostrarPedidos() {
     this.http.buscarPedidos().subscribe(data => {
+   
       data.forEach(d =>{
-        console.log(this.pedido)
+      
         this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
-        console.log(d)
+
       }
       )
-      console.log(this.pedido)
+     
     })
     if (this.pedido) {
       this.carregar = true;

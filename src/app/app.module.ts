@@ -20,7 +20,6 @@ import { DeletarProdutoComponent } from './components/deletar-produto/deletar-pr
 import { AlterarProdutoComponent } from './components/alterar-produto/alterar-produto.component';
 import { PedidoConfigComponent } from './components/pedido-config/pedido-config.component';
 import { AlterarPedidoComponent } from './components/alterar-pedido/alterar-pedido.component';
-import { ListarPedidoComponent } from './components/listar-pedido/listar-pedido.component';
 import { ClientesConfigComponent } from './components/clientes-config/clientes-config.component';
 import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
 import { ListarProdutosComponent } from './components/listar-produtos/listar-produtos.component';
@@ -47,7 +46,6 @@ registerLocaleData(localePt, 'pt');
     AlterarProdutoComponent,
     PedidoConfigComponent,
     AlterarPedidoComponent,
-    ListarPedidoComponent,
     ClientesConfigComponent,
     ListarClientesComponent,
     ListarProdutosComponent,
