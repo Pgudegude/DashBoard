@@ -12,6 +12,7 @@ export class CriarProdutoComponent implements OnInit {
   
   formularioProduto: FormGroup
   imagem: any
+  desc: any
 
   constructor(private construirForm: FormBuilder, private service: ProductService) { }
 
@@ -30,6 +31,11 @@ export class CriarProdutoComponent implements OnInit {
       brand: new FormControl(produto.brand),
       model: new FormControl(produto.model)
     })
+  }
+
+  desconto(){
+    this.desc =  (this.formularioProduto.value.valueProduct * 0.3).toLocaleString()
+    this.formularioProduto.controls['valueDiscount'].patchValue(this.desc)
   }
 
   mostrarImagem(){
@@ -73,7 +79,7 @@ export class CriarProdutoComponent implements OnInit {
           Validators.required
         ])],
       valueDiscount: [
-        '',
+        {value:'',disabled: true},
         Validators.compose([
           Validators.required
         ])],

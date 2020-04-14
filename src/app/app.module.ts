@@ -22,8 +22,10 @@ import { PedidoConfigComponent } from './components/pedido-config/pedido-config.
 import { AlterarPedidoComponent } from './components/alterar-pedido/alterar-pedido.component';
 import { ListarPedidoComponent } from './components/listar-pedido/listar-pedido.component';
 import { ClientesConfigComponent } from './components/clientes-config/clientes-config.component';
-import { AlterarClientesComponent } from './components/alterar-clientes/alterar-clientes.component';
 import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
+import { ListarProdutosComponent } from './components/listar-produtos/listar-produtos.component';
+import { AlterarClienteComponent } from './components/alterar-cliente/alterar-cliente.component';
+
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -47,8 +49,10 @@ registerLocaleData(localePt, 'pt');
     AlterarPedidoComponent,
     ListarPedidoComponent,
     ClientesConfigComponent,
-    AlterarClientesComponent,
-    ListarClientesComponent
+    ListarClientesComponent,
+    ListarProdutosComponent,
+    AlterarClienteComponent,
+
   ],
   imports: [
     BrowserModule,

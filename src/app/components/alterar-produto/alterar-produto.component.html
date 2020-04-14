@@ -19,13 +19,13 @@
         </div>
         <div class="col-md-3 p-0 m-0 ml-3">
             <div class="form-group">
-                <label for="image">imagem: </label>
+                <label for="image">Imagem: </label>
                 <input class="form-control semborda" (change)="mostrarImagem()" type="file" id="image" name="image" required
                     formControlName="image">
             </div>
         </div>
         <div id="imagem" class="col-md-1 p-0 m-0">
-            <img src="{{imagem}}" height="30" width="30">
+            <img src="{{imagem}}" height="35" width="35">
         </div>
         <div class="col-md-3 p-0 m-0 ml-3">
             <div class="form-group">
@@ -52,9 +52,17 @@
         <div class="col-md-3 p-0 m-0">
             <div class="form-group">
                 <label for="valueProduct">Valor R$: </label>
-                <input class="form-control" id="valueProduct" name="valueProduct"
+                <input class="form-control" (keyup)="desconto()" id="valueProduct" name="valueProduct"
                     placeholder="00.00" type="tel" required formControlName="valueProduct">
                 <small>*separe as casa decimais com ponto</small>
+            </div>
+        </div>
+        <div class="col-md-2 p-0 m-0 ml-2">
+            <div class="form-group">
+                <label for="desc">Valor com desconto R$: </label>
+                <input class="form-control" id="desc" name="valueDiscount"
+                    placeholder="00.00" type="tel" formControlName="valueDiscount">
+                <small>*apenas para visualização</small>
             </div>
         </div>
         <div class="col-md-3 p-0 m-0 ml-3">

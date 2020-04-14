@@ -14,6 +14,7 @@ export class AlterarProdutoComponent implements OnInit {
 
   formularioAlterar: FormGroup
   imagem: any
+  desc: any
 
   constructor(private construirForm: FormBuilder, private service: ProductService) { }
 
@@ -39,20 +40,26 @@ export class AlterarProdutoComponent implements OnInit {
     })
   }
 
+  desconto(){
+    this.desc =  (this.formularioAlterar.value.valueProduct * 0.3).toLocaleString()
+    this.formularioAlterar.controls['valueDiscount'].patchValue(this.desc)
+  }
+
 
   puxarProduto(){
     let dados = this.formularioAlterar.value.codProduct
-    this.service.findByProductsCode(dados).subscribe((data: any)=>{
-      this.formularioAlterar.controls['name'].patchValue(data[0].name)
-      this.formularioAlterar.controls['description'].patchValue(data[0].description)
-      this.formularioAlterar.controls['category'].patchValue(data[0].category.id)
-      this.formularioAlterar.controls['valueProduct'].patchValue(data[0].valueProduct)
-      this.formularioAlterar.controls['brand'].patchValue(data[0].brand)
-      this.formularioAlterar.controls['model'].patchValue(data[0].model)
-      this.formularioAlterar.controls['valueDiscount'].patchValue(data[0].valueDiscount)
-      this.imagem = data[0].image
-    })
+      this.service.findByProductsCode(dados).subscribe((data: any)=>{
+        this.formularioAlterar.controls['name'].patchValue(data[0].name)
+        this.formularioAlterar.controls['description'].patchValue(data[0].description)
+        this.formularioAlterar.controls['category'].patchValue(data[0].category.id)
+        this.formularioAlterar.controls['valueProduct'].patchValue(data[0].valueProduct)
+        this.formularioAlterar.controls['brand'].patchValue(data[0].brand)
+        this.formularioAlterar.controls['model'].patchValue(data[0].model)
+        this.formularioAlterar.controls['valueDiscount'].patchValue(data[0].valueDiscount)
+        this.imagem = data[0].image
+      })
   }
+
 
   criarAlteracao() {
     this.formularioAlterar = this.construirForm.group({
@@ -87,7 +94,7 @@ export class AlterarProdutoComponent implements OnInit {
           Validators.required
         ])],
       valueDiscount: [
-        '',
+        {value:'',disabled: true},
         Validators.compose([
           Validators.required
         ])],

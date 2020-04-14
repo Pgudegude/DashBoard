@@ -1,0 +1,143 @@
+<div class="row ml-2 p-0 m-0">
+    <h3>Preencha <strong>todos</strong> os campos</h3>
+</div>
+<form method="POST" [formGroup]="formAlterar" (ngSubmit)="alterarCliente()">
+    <div class="row p-0 m-0 mr-1 ml-1">
+        <div class="col-md-6 p-0 m-0 ml-1">
+            <div class="col-md-12 p-0 m-0">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="idClient">ID cliente:</label>
+                        <input class="form-control" placeholder="identificação" required type="tel" name="idClient"
+                            id="idClient" (blur)="puxarCliente()" formControlName="idClient">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Nome completo:</label>
+                    <input class="form-control" type="text" name="name" id="name" placeholder="nome do cliente"
+                        formControlName="name">
+                </div>
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input class="form-control" type="tel" name="cpf" id="cpf" placeholder="000.000.000-00"
+                        formControlName="cpf">
+                </div>
+                <div class="row m-0 p-0 centralizar">
+                    <div class="col-md-4 m-0 p-0">
+                        <div class="form-group" *ngIf="alterar; else data">
+                            <label for="birthDate">Data de nascimento:</label>
+                            <input class="form-control" type="text" (click)="alterar=false" name="birthDate" id="birthDate"
+                                formControlName="birthDate">
+                        </div>
+                    </div>
+                    <ng-template #data>
+                        <div class="form-group">
+                            <label for="birthDate">Data de nascimento:</label>
+                            <input class="form-control" type="date" name="birthDate" id="birthDate"
+                                formControlName="birthDate">
+                        </div>
+                    </ng-template>
+                    <div class="col-md-7 m-0 p-0">
+                        <div class="form-group">
+                            <label for="phone">Telefone:</label>
+                            <input class="form-control" type="tel" placeholder="(XX) XXXXX-XXXX" name="phone" id="phone"
+                                formControlName="phone">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mail">Email:</label>
+                    <input class="form-control" type="email" placeholder="exemplo@exemplo.com.br" name="mail" id="mail"
+                        formControlName="mail">
+                </div>
+            </div>
+        </div>
+        <div class="row p-0 m-0 ml-1">
+            <div class="col-md-12 m-0 p-0" *ngIf="escolha ;else enderecos">
+                <div class="row p-0 m-0 mr-1 ml-1">
+                    <div class="col-md-3 m-0 p-0 form-group">
+                        <label for="cep">CEP:</label>
+                        <input class="form-control" type="text" placeholder="0000-000" name="cep" id="cep"
+                            formControlName="_cep">
+                    </div>
+                    <div class="col-md-9  form-group">
+                        <label for="endereco">Endereço:</label>
+                        <input class="form-control" type="text" placeholder="rua,av,viela etc.." name="endereco"
+                            id="endereco" formControlName="_endereco">
+                    </div>
+                </div>
+                <div class="row p-0 m-0 mr-1 ml-1">
+                    <div class="col-md-8 m-0 p-0 form-group">
+                        <label for="bairro">Bairro:</label>
+                        <input class="form-control" type="text" placeholder="paulista,sao miguel etc..." name="bairro"
+                            id="bairro" formControlName="_bairro">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="numero">Nº:</label>
+                        <input class="form-control" type="text" name="numero" id="numero" formControlName="_numero">
+                    </div>
+                </div>
+                <div class="row p-0 m-0 mr-1 ml-1">
+                    <div class="col-md-6 m-0 p-0 form-group">
+                        <label for="estado">Estado:</label>
+                        <select id='estado' name="estado" formControlName="_estado" class="form-control">
+                            <option value="" disabled selected>Estado</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="cidade">Cidade:</label>
+                        <input class="form-control" type="text" name="cidade" id="cidade" formControlName="_cidade">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="complemento">Completo:</label>
+                    <input class="form-control" type="text" placeholder="apartemento,sobrado,bloco etc..."
+                        name="complemento" id="complemento" formControlName="_complemento">
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div id="centro" class="col-md-12 mt-3 text-center">
+        <button class="btn btn-outline-info col-md-3">Alterar</button>
+    </div>
+</form>
+<ng-template #enderecos>
+    <div class="col-md-12 m-0 p-0 text-center" *ngFor="let endereco of endereco">
+        <div class="card mb-2"  style="width: 18rem;" (click)="puxarCliente()" (click)="enderecoEscolhido(endereco)">
+            <div class="card-body">
+                <p>{{endereco._endereco}}, nº {{endereco._numero}}</p>
+                <p>Complemento {{endereco._complemento}}</p>
+                <p>Cep {{endereco._cep}}</p>
+                <p>Bairro {{endereco._bairro}}</p>
+            </div>
+        </div>
+    </div>
+</ng-template>
