@@ -45,7 +45,9 @@ function adaptar3(data: any[]) {
 export class PedidoService {
   constructor(public http: HttpClient, private httpAddress: EnderecoService) { }
 
- 
+  // public buscarPedido(code: number) {
+  //   return this.http.get(`/api/buscarRequest/${code}`)
+  // }
 
   adaptador2 = (pedido: Pedido) => {
     return {
