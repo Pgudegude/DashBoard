@@ -7,13 +7,14 @@
                 <th scope="col">imagem</th>
                 <th scope="col">marca</th>
                 <th scope="col">modelo</th>
-                <th scope="col">
-                    <select style="background-color: #343a40; color: white; font-weight: bold;">
+                <th scope="col" [formGroup]="formularioCategoria">
+                    <select (change)="listarCategoria()" formControlName='categoria' style="background-color: #343a40; color: white; font-weight: bold;">
                     <option value="" disabled selected>categoria</option>
                     <option value="2">bola importada</option>
                     <option value="7">Gourmet</option>
                     <option value="8">DBZ</option>
                     <option value="10">Acid Eaters</option>
+                    <option value= "11">Todos</option>
                 </select></th>
                 <th scope="col">valor</th>
                 <th scope="col">desconto</th>

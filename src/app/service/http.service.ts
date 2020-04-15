@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { map, retry } from "rxjs/operators";
 
-import { Observable } from 'rxjs';
+const urlProdutos: string = '/api/ecommerce/find-product';
+const urlAdicionarCliente: String = '/api/ecommerce/create-client';
+import { HttpClient } from '@angular/common/http';
 import { Endereco } from '../model/endereco';
+import { Observable } from 'rxjs';
 
 
 const urlAPI: string = 'http://viacep.com.br/ws/';
-const urlProdutos: string = '/api/ecommerce/find-product';
-const urlAdicionarCliente: String = '/api/ecommerce/create-client';
+
 interface viacep {
   cep: string,
   logradouro: string,
