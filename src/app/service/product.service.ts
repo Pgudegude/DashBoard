@@ -14,6 +14,9 @@ img: string = "../../../assets/Imagem/"
 
   constructor(private http: HttpClient) { }
 
+  public getProducts() {
+    return this.http.get(`/api/find-product`)
+  }
 
   public delete(id){
     return this.http.delete(`/api/product/${id}`)
@@ -24,9 +27,6 @@ img: string = "../../../assets/Imagem/"
     return this.http.get(`/api/product-id/${code}`)
   }
 
-  public getProducts() {
-    return this.http.get(`/api/find-product/list`)
-  }
 
   listarPorCategoria(cod: number){
     return this.http.get(`/api/product-category/${cod}`)

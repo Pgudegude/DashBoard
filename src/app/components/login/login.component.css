@@ -5,7 +5,7 @@
     box-shadow: 0px 1px 0px 1px #bbb8b8;
 }
 
-.form-control{
+.form-control {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -14,20 +14,23 @@
     box-sizing: border-box;
 }
 
-#cad{
+#cad {
     display: flex;
     justify-content: space-between;
 }
 
-.ng-valid[required], .ng-valid.required  {
-    border-left: 5px solid #42A948; /* green */
-    }
-    
-.ng-invalid:not(form)  {
-    border-left: 5px solid #A94442; /* red */
-    }
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
 
-.row{
+.ng-invalid:not(form) {
+    border-left: 5px solid #A94442;
+    /* red */
+}
+
+.row {
     display: flex;
     justify-content: center;
     align-items: center;

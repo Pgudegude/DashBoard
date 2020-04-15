@@ -45,5 +45,4 @@ export class DeletarProdutoComponent implements OnInit {
       ]
     })
   }
-
 }

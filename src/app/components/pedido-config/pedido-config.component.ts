@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-cliente-config',
-  templateUrl: './cliente-config.component.html',
-  styleUrls: ['./cliente-config.component.css']
+  selector: 'app-pedido-config',
+  templateUrl: './pedido-config.component.html',
+  styleUrls: ['./pedido-config.component.css']
 })
-export class ClienteConfigComponent implements OnInit {
-
+export class PedidoConfigComponent implements OnInit {
   login: boolean
   usuario: any
 
   constructor() { }
-
 
   ngOnInit() {
     this.verificarLogin();
   }
 
 
-  verificarLogin() {
+  verificarLogin(){
     if (sessionStorage.getItem("usuario") != null) {
       this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
       this.login = true
@@ -28,6 +25,5 @@ export class ClienteConfigComponent implements OnInit {
       this.login = false
     }
   }
-
 
 }
