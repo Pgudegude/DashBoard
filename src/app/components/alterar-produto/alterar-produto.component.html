@@ -17,12 +17,12 @@
         </div>
         <div class="col-md-3 p-0 m-0 ml-3">
             <div class="form-group">
-                <label for="image">Imagem: </label>
+                <label for="image">imagem: </label>
                 <input class="form-control semborda" (change)="mostrarImagem()" type="file" id="image" name="image" required formControlName="image">
             </div>
         </div>
         <div id="imagem" class="col-md-1 p-0 m-0">
-            <img src="{{imagem}}" height="35" width="35">
+            <img src="{{imagem}}" height="30" width="30">
         </div>
         <div class="col-md-3 p-0 m-0 ml-3">
             <div class="form-group">
@@ -44,47 +44,28 @@
             </div>
         </div>
         <div class="d-flex justify-content-between col-12">
-            <<<<<<< HEAD <div class="col-md-3 p-0 m-0">
+            <div class="col-md-3 p-0 m-0">
                 <div class="form-group">
                     <label for="valueProduct">Valor R$: </label>
                     <input class="form-control" id="valueProduct" name="valueProduct" placeholder="00.00" type="tel" required formControlName="valueProduct">
                     <small>*separe as casa decimais com ponto</small>
                 </div>
-        </div>
-        <div class="col-md-3 p-0 m-0 ml-3">
-            <div class="form-group">
-                <label for="brand">Marca: </label>
-                <input class="form-control" id="	brand" name="brand" placeholder="Mike Cong" type="tel" required formControlName="brand">
-            </div>
-            =======
-            <div class="col-md-3 p-0 m-0">
-                <div class="form-group">
-                    <label for="valueProduct">Valor R$: </label>
-                    <input class="form-control" (keyup)="desconto()" id="valueProduct" name="valueProduct" placeholder="00.00" type="tel" required formControlName="valueProduct">
-                    <small>*separe as casa decimais com ponto</small>
-                </div>
-            </div>
-            <div class="col-md-2 p-0 m-0 ml-2">
-                <div class="form-group">
-                    <label for="desc">Valor com desconto R$: </label>
-                    <input class="form-control" id="desc" name="valueDiscount" placeholder="00.00" type="tel" formControlName="valueDiscount">
-                    <small>*apenas para visualização</small>
-                </div>
             </div>
             <div class="col-md-3 p-0 m-0 ml-3">
                 <div class="form-group">
                     <label for="brand">Marca: </label>
-                    <input class="form-control" id="	brand" name="brand" placeholder="Mike Cong" type="tel" required formControlName="brand"> >>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
-                </div>
-                <div class="col-md-3 p-0 m-0 ml-3">
-                    <div class="form-group">
-                        <label for="model">Modelo: </label>
-                        <input class="form-control" placeholder="buligão" type="tel" id="model" name="model" required formControlName="model">
-                    </div>
+                    <input class="form-control" id="	brand" name="brand" placeholder="Mike Cong" type="tel" required formControlName="brand">
                 </div>
             </div>
-            <div id="centro" class="col-md-12 mt-3 text-center">
-                <button class="btn btn-outline-info col-md-3">Alterar</button>
+            <div class="col-md-3 p-0 m-0 ml-3">
+                <div class="form-group">
+                    <label for="model">Modelo: </label>
+                    <input class="form-control" placeholder="buligão" type="tel" id="model" name="model" required formControlName="model">
+                </div>
             </div>
         </div>
+        <div id="centro" class="col-md-12 mt-3 text-center">
+            <button class="btn btn-outline-info col-md-3">Alterar</button>
+        </div>
+    </div>
 </form>

@@ -3,60 +3,30 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoService } from 'src/app/service/pedido.service';
 import * as moment from 'moment'
-<<<<<<< HEAD
-
-
-=======
 import { StatusRequest } from 'src/app/model/StatusRequest';
 import { Pedido } from 'src/app/model/Pedido';
 import { Pagamento } from 'src/app/model/Pagamento';
->>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
 @Component({
   selector: 'app-alterar-pedido',
   templateUrl: './alterar-pedido.component.html',
   styleUrls: ['./alterar-pedido.component.css']
 })
 export class AlterarPedidoComponent implements OnInit {
-<<<<<<< HEAD
-
-  constructor(private fb: FormBuilder, private service: PedidoService) { }
-  alterarPedido: FormGroup
-
-  ngOnInit(): void {
-    this.alteracao()
-  }
-
-=======
   constructor(private fb: FormBuilder, private service: PedidoService) { }
   alterarPedido: FormGroup
   ngOnInit(): void {
     this.alteracao()
   }
->>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
   enviarAlteracao(pedido: Detalhe) {
     return new FormGroup({
       request: new FormControl(pedido.request.statusRequest),
       payment: new FormControl(pedido.request.payment.status)
     })
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
   data: Date = new Date()
   mes = this.data.getUTCMonth()
   dia = this.data.getUTCDate()
   date: any
-<<<<<<< HEAD
-  puxarPedido() {
-    let dados = this.alterarPedido.value.Detalhe
-    this.service.buscarPedidoId(this.alterarPedido.value.code).subscribe((data: any) => {
-       this.alterarPedido.controls["address"].patchValue(data.address.logradouro + ", "+ data.address.number)
-       
-       if(this.mes<10 && this.dia<10){
-         this.date = this.data.getFullYear()+"-0"+this.mes+"-0"+this.dia
-
-=======
   request:Pedido
   puxarPedido() {
     let dados = this.alterarPedido.value.Detalhe
@@ -65,7 +35,6 @@ export class AlterarPedidoComponent implements OnInit {
        this.alterarPedido.controls["address"].patchValue(data.address.logradouro + ", "+ data.address.number)
        if(this.mes<10 && this.dia<10){
          this.date = this.data.getFullYear()+"-0"+this.mes+"-0"+this.dia
->>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
          this.alterarPedido.controls["date"].patchValue(this.date)
        }
        if(this.mes>9 && this.dia<10){
@@ -74,30 +43,15 @@ export class AlterarPedidoComponent implements OnInit {
       }
       if(this.mes<10 && this.dia>9){
          this.date = this.data.getFullYear()+"-0"+this.mes+"-"+this.dia
-<<<<<<< HEAD
-
-=======
->>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
          this.alterarPedido.controls["date"].patchValue(this.date)
       }
       if(this.mes>9 && this.dia>9){
          this.date = this.data.getFullYear()+"-"+this.mes+"-"+this.dia
-<<<<<<< HEAD
-
-         this.alterarPedido.controls["date"].patchValue(this.date)
-      }
-       console.log(data)
-     
-      this.alterarPedido.controls["valueProduct"].patchValue(data.price)
-      this.alterarPedido.controls["status"].patchValue(data.payment.status)
-    
-=======
          this.alterarPedido.controls["date"].patchValue(this.date)
       }
        console.log(data)
       this.alterarPedido.controls["valueProduct"].patchValue(data.price)
       this.alterarPedido.controls["status"].patchValue(data.payment.status)
->>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
       this.alterarPedido.controls["statusRequest"].patchValue(data.statusRequest[data.statusRequest.length-1].statusRequest)
     })
   }
@@ -118,10 +72,6 @@ export class AlterarPedidoComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])],
-<<<<<<< HEAD
-     
-=======
->>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
       valueProduct: [
         '',
         Validators.compose([
@@ -141,12 +91,6 @@ export class AlterarPedidoComponent implements OnInit {
   }
   alterarStatus() {
     if (confirm("Confirme suas alterações!")) {
-<<<<<<< HEAD
-      this.service.alterar(this.alterarPedido.value).subscribe(() => {
-        alert("Pedido alterado!")
-        this.alterarPedido.reset()
-
-=======
       let statusPedido: StatusRequest = new StatusRequest(null,
         this.alterarPedido.value.date, this.alterarPedido.value.statusRequest, 
         new Pedido(this.alterarPedido.value.valueProduct,
@@ -161,7 +105,6 @@ export class AlterarPedidoComponent implements OnInit {
       this.service.alterar(statusPedido).subscribe(() => {
         alert("Pedido alterado!")
         this.alterarPedido.reset()
->>>>>>> c416f94b127cdbf6685d84f41b7cb02d86b0f640
       })
     }
   }

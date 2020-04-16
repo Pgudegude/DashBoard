@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
+import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent implements OnInit {
+  
+
+
+  
   constructor(private http: PedidoService) {
   }
   detalhe: Detalhe[]
@@ -19,6 +24,10 @@ return {
   "quantidade":det.request.statusRequest.length
 }
   }
+
+  
+
+
   mostrarPedidos() {
     this.http.buscarPedidos().subscribe(data => {
    
@@ -37,8 +46,10 @@ return {
     return this.pedido
   }
   ngOnInit(): void {
-    this.mostrarPedidos()
+    
+    this.mostrarPedidos();
   }
+  
   dets : any [] = []
   posicao: any 
   details(pedido) {
@@ -48,4 +59,6 @@ return {
       this.dets.push(pedido)
       console.log(this.dets)
   }
+
+ 
 }

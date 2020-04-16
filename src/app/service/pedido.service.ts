@@ -114,5 +114,8 @@ buscarPedidoId(id){
 alterar(pedido: StatusRequest) {
   return this.http.post(`/api/adicionar-statusRequest`,pedido)
 }
+public statusPagamento() {
+  return this.http.get(`/api/status-pagamento`)
+}
 }
 

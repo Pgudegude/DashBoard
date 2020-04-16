@@ -11,11 +11,14 @@ export class PedidoConfigComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit() {
+    
     this.verificarLogin();
+   
   }
-
-
+  
+ 
   verificarLogin(){
     if (sessionStorage.getItem("usuario") != null) {
       this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
