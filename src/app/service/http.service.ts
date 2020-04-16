@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
+import { map, retry } from "rxjs/operators";
+
+const urlProdutos: string = '/api/ecommerce/find-product';
+const urlAdicionarCliente: String = '/api/ecommerce/create-client';
 import { HttpClient } from '@angular/common/http';
 import { Endereco } from '../model/endereco';
 import { Observable } from 'rxjs';
-import { retry } from 'rxjs/operators';
+
 
 const urlAPI: string = 'http://viacep.com.br/ws/';
 
@@ -20,12 +24,19 @@ interface viacep {
 
 export class HttpService {
 
-
   constructor(private http: HttpClient) { }
 
   getCep(endereco: Endereco): Observable<viacep> {
-    console.log(endereco._cep);
+
     return this.http.get<viacep>(urlAPI + endereco._cep + "/json/").pipe(retry(2));
+
   }
-  
+
+
+
+  public getCategory(value:any){
+    return this.http.get(`/api/ecommerce/product-category/${value}`)
+  }
+
+
 }

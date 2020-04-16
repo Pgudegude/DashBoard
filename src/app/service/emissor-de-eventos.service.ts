@@ -14,4 +14,13 @@ export class EmissorDeEventosService {
   emitirUsuarioDeslogado(){
     this.emissor.emit("usuarioDeslogado")
   }
+  emitirEventoClienteAlterado(){
+    this.emissor.emit("clienteAlterado")
+  }
+  emitirEventoProdutoAlterado(){
+    this.emissor.emit("produtoAlterado")
+  }
+  emitirEventoPedidoAlterado(){
+    this.emissor.emit("pedidoAlterado")
+  }
 }

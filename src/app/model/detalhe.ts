@@ -9,6 +9,5 @@ export class Detalhe{
      public   amount?: number,
      public   codProduct?: apiProduct,
      public   request?: Pedido,
-    ){
-    }
+    ){}
 }

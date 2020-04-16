@@ -27,6 +27,8 @@ export class AlterarClienteComponent implements OnInit {
 
 
   capturarCEP() {
+    console.log(this.formAlterar.value._cep)
+    
     this.http.getCep(this.formAlterar.value).subscribe((data) => {
       this.end.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
       this.formAlterar.controls['_endereco'].patchValue(this.end.endereco);
@@ -159,6 +161,7 @@ export class AlterarClienteComponent implements OnInit {
 
   alterarCliente() {
     if (confirm("Confirme suas alterações!")) {
+      console.log(this.formAlterar.value)
       this.serviceCliente.alterar(this.formAlterar.value).subscribe(() => {
         alert("Cliente alterado!")
         this.formAlterar.reset()

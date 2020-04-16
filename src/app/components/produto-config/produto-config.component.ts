@@ -3,6 +3,7 @@ import { ProductAPI } from './../../model/productAPI';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 @Component({
   selector: 'app-produto-config',
@@ -14,12 +15,14 @@ export class ProdutoConfigComponent implements OnInit {
   login: boolean
   usuario: any
 
-  constructor() { }
+  constructor(private emissor: EmissorDeEventosService) { }
 
   ngOnInit() {
     this.verificarLogin();
   }
-
+emitirEvento(){
+  this.emissor.emitirEventoProdutoAlterado()
+}
 
   verificarLogin(){
     if (sessionStorage.getItem("usuario") != null) {

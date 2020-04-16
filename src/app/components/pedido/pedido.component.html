@@ -10,7 +10,7 @@
                         <th scope="col">Status Pagamento</th>
                         <th scope="col" [formGroup]="formularioStatus">
                             <select formControlName="status" (change)="listarStatus()" style="color: black; font-weight: bold;">
-                                <option selected>Statuts Pedido</option>
+                                <option disabled selected>Statuts Pedido</option>
                                 <option value="pagamento foi aprovado">pagamento foi aprovado</option>
                                 <option value="Aguardando Pagamento">Aguardando Pagamento</option>
                                 <option value="saiu para entrega ao destinatário">saiu para entrega ao destinatário</option>
