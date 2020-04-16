@@ -9,7 +9,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { PedidoComponent } from './components/pedido/pedido.component';
-import { ProdutoComponent } from './components/produto/produto.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './components/menu/menu.component';
@@ -24,6 +23,7 @@ import { ClientesConfigComponent } from './components/clientes-config/clientes-c
 import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
 import { ListarProdutosComponent } from './components/listar-produtos/listar-produtos.component';
 import { AlterarClienteComponent } from './components/alterar-cliente/alterar-cliente.component';
+import { FaturamentoConfigComponent } from './components/faturamento-config/faturamento-config.component';
 
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -50,6 +50,7 @@ registerLocaleData(localePt, 'pt');
     ListarClientesComponent,
     ListarProdutosComponent,
     AlterarClienteComponent,
+    FaturamentoConfigComponent,
 
   ],
   imports: [

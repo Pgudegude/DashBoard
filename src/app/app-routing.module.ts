@@ -1,8 +1,9 @@
+import { FaturamentoConfigComponent } from './components/faturamento-config/faturamento-config.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import {PedidoComponent} from './components/pedido/pedido.component';
-import {HomeComponent}   from './components/home/home.component';
+import { PedidoComponent } from './components/pedido/pedido.component';
+import { HomeComponent } from './components/home/home.component';
 import { ProdutoComponent } from './components/produto/produto.component';
 
 import { ProdutoConfigComponent } from './components/produto-config/produto-config.component';
@@ -31,18 +32,20 @@ export const ROUTES: Routes = [
   {
     path: "pedido",
     component: PedidoConfigComponent
-  },{
+  }, {
     path: "clientes",
     component: ClientesConfigComponent
   },
- 
-{
- 
+  {
     path: "produto_config",
     component: ProdutoConfigComponent
-  },{
+  }, {
     path: "cliente_config",
     component: ClientesConfigComponent
+  },
+  {
+    path: "faturamento",
+    component: FaturamentoConfigComponent
   }
 ]
 @NgModule({

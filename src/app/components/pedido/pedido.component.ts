@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
-                
+
 
 
 @Component({
@@ -13,17 +13,17 @@ import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
 export class PedidoComponent implements OnInit {
   constructor(private http: PedidoService) {
   }
- 
+
   detalhe: Detalhe[]
   carregar: boolean
-  pedido:PedidoDetalhe[] = []
-  
+  pedido: PedidoDetalhe[] = []
 
-  adaptar( det: Detalhe){
-return {
-  "detalhe":det,
-  "quantidade":det.request.statusRequest.length
-}
+
+  adaptar(det: Detalhe) {
+    return {
+      "detalhe": det,
+      "quantidade": det.request.statusRequest.length
+    }
   }
 
   mostrarPedidos() {
@@ -45,17 +45,17 @@ return {
   }
 
   ngOnInit(): void {
-   
+
     this.mostrarPedidos()
   }
-  dets : any [] = []
-  posicao: any 
+  dets: any[] = []
+  posicao: any
   details(pedido) {
-      this.dets=[]
-      this.detalhe
-      this.posicao = this.pedido.indexOf(pedido), console.log(this.posicao)  
-      this.dets.push(pedido)
-      console.log(this.dets)
+    this.dets = []
+    this.detalhe
+    this.posicao = this.pedido.indexOf(pedido), console.log(this.posicao)
+    this.dets.push(pedido)
+    console.log(this.dets)
   }
 
 }
