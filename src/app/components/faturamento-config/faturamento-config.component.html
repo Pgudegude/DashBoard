@@ -3,24 +3,38 @@
         <div class="col-md-2 m-0 p-0">
             <app-menu></app-menu>
         </div>
-        <div class="col-md-4 m-0 p-0 ml-1">
+        <div class="col-md-3 m-0 p-0 ml-1">
             <h5 class="text-center">Contato</h5>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Duvida</th>
-                        <th scope="col">Sugestão</th>
-                        <th scope="col">Reclamação</th>
-                        <th scope="col">Elogio</th>
+                        <th scope="col">Qtd contatos</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr *ngFor="let contato of contatos">
+                        <th scope="row">{{contato[1]}}</th>
+                        <th scope="row" class="text-center">{{contato[0]}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5 m-0 p-0 ml-3">
+            <h5 class="text-center">Contato</h5>
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="col">#</th>
+                        <th scope="col">Qtd pedidos</th>
+                        <th scope="col">R$ pedidos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pedido of faturamento">
+                        <th scope="row">{{pedido.status}}</th>
+                        <th scope="row" class="text-center">{{pedido.total}}</th>
+                        <th scope="row" class="text-center">{{pedido.totalValor}}</th>
                     </tr>
                 </tbody>
             </table>
