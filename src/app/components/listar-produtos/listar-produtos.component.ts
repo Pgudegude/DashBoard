@@ -3,13 +3,14 @@ import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/service/product.service';
-import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-listar-produtos',
   templateUrl: './listar-produtos.component.html',
   styleUrls: ['./listar-produtos.component.css']
 })
+
 export class ListarProdutosComponent implements OnInit {
 
   produtos: any = []
