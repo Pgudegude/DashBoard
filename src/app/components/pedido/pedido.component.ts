@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 
 
@@ -11,9 +12,10 @@ import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent implements OnInit {
-  constructor(private http: PedidoService) {
+  constructor(private http: PedidoService, private emissor : EmissorDeEventosService) {
+    this.emissor.emissor.subscribe(()=>this.mostrarPedidos())
   }
-
+  
   detalhe: Detalhe[]
   carregar: boolean
   pedido: PedidoDetalhe[] = []

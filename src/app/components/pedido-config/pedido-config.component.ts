@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
+
 
 @Component({
   selector: 'app-pedido-config',
@@ -9,12 +11,14 @@ export class PedidoConfigComponent implements OnInit {
   login: boolean
   usuario: any
 
-  constructor() { }
+  constructor(private emissor: EmissorDeEventosService) { }
 
   ngOnInit() {
     this.verificarLogin();
   }
-
+emitirEvento(){
+  this.emissor.emitirEventoPedidoAlterado()
+}
 
   verificarLogin(){
     if (sessionStorage.getItem("usuario") != null) {

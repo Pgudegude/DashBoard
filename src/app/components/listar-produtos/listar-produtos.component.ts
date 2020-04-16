@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/service/product.service';
 import { filter } from 'rxjs/operators';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 @Component({
   selector: 'app-listar-produtos',
@@ -17,8 +18,9 @@ export class ListarProdutosComponent implements OnInit {
   categoria: number
 
 
-  constructor(private service: ProductService, private fb: FormBuilder) {
+  constructor(private service: ProductService, private fb: FormBuilder, private emissor : EmissorDeEventosService) {
     this.listar()
+    this.emissor.emissor.subscribe(()=>this.listar())
   }
 
   criandoForm() {

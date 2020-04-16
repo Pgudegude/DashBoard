@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/model/cliente';
 import { ClienteService } from 'src/app/service/cliente.service';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 @Component({
   selector: 'app-listar-clientes',
@@ -9,7 +10,9 @@ import { ClienteService } from 'src/app/service/cliente.service';
 })
 export class ListarClientesComponent implements OnInit {
 
-  constructor(private http: ClienteService) { }
+  constructor(private http: ClienteService, private emissor:EmissorDeEventosService) { 
+    this.emissor.emissor.subscribe(()=>this.buscarClientes())
+  }
 
   ngOnInit(): void {
     this.buscarClientes()

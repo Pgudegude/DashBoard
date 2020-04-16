@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from 'src/app/service/cliente.service';
+import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 @Component({
   selector: 'app-clientes-config',
@@ -9,12 +11,14 @@ export class ClientesConfigComponent implements OnInit {
   login: boolean
   usuario: any
 
-  constructor() { }
+  constructor(private service: ClienteService, private emissor:EmissorDeEventosService) { }
 
   ngOnInit() {
     this.verificarLogin();
   }
-
+emissorDeEvento(){
+  this.emissor.emitirEventoClienteAlterado()
+}
 
   verificarLogin(){
     if (sessionStorage.getItem("usuario") != null) {
