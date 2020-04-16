@@ -29,15 +29,12 @@ export class PedidoComponent implements OnInit {
   }
 
   mostrarPedidos() {
+    this.pedido=[]
     this.http.buscarPedidos().subscribe(data => {
-   
       data.forEach(d =>{
-      
         this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
-
       }
       )
-     
     })
     if (this.pedido) {
       this.carregar = true;
@@ -47,18 +44,17 @@ export class PedidoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.mostrarPedidos()
   }
-  dets: any[] = []
-  posicao: any
-  details(pedido) {
-    this.dets = []
-    this.detalhe
-    this.posicao = this.pedido.indexOf(pedido), console.log(this.posicao)
-    this.dets.push(pedido)
-    console.log(this.dets)
-  }
+  // dets: any[] = []
+  // posicao: any
+  // details(pedido) {
+  //   this.dets = []
+  //   this.detalhe
+  //   this.posicao = this.pedido.indexOf(pedido), console.log(this.posicao)
+  //   this.dets.push(pedido)
+  //   console.log(this.dets)
+  // }
 
 }
 

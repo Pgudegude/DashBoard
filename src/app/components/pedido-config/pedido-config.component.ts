@@ -16,7 +16,7 @@ export class PedidoConfigComponent implements OnInit {
   ngOnInit() {
     this.verificarLogin();
   }
-emitirEvento(){
+  emitirEvento(){
   this.emissor.emitirEventoPedidoAlterado()
 }
 
