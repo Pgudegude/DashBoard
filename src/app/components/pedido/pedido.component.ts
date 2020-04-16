@@ -1,23 +1,25 @@
+import { StatusRequest } from 'src/app/model/StatusRequest';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
-
-
-
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent implements OnInit {
-  constructor(private http: PedidoService) {
-  }
 
+  formularioStatus: FormGroup
+
+
+  constructor(private http: PedidoService, private fb: FormBuilder) {
+  }
   detalhe: Detalhe[]
   carregar: boolean
-  pedido: PedidoDetalhe[] = []
-
+  // pedido: PedidoDetalhe[] = []
+  pedido: any = []
 
   adaptar(det: Detalhe) {
     return {
@@ -26,15 +28,22 @@ export class PedidoComponent implements OnInit {
     }
   }
 
+  criandoForm() {
+    this.formularioStatus = this.fb.group({
+      status: [
+        '',
+        Validators.compose([
+          Validators.required
+        ])]
+    })
+  }
+
   mostrarPedidos() {
     this.http.buscarPedidos().subscribe(data => {
-      data.forEach(d => {
-        console.log(this.pedido)
-        this.pedido.push(new PedidoDetalhe(d, d.request.statusRequest.length - 1))
-        console.log(d)
+      data.forEach(d =>{
+        this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
       }
       )
-      console.log(this.pedido)
     })
     if (this.pedido) {
       this.carregar = true;
@@ -43,10 +52,13 @@ export class PedidoComponent implements OnInit {
     return this.pedido
   }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.mostrarPedidos()
+    this.criandoForm()
   }
+
+
   dets: any[] = []
   posicao: any
   details(pedido) {
@@ -57,6 +69,17 @@ export class PedidoComponent implements OnInit {
     console.log(this.dets)
   }
 
+
+  listarStatus(){
+    let stt = this.formularioStatus.value.status
+    this.http.listarStatus(stt).subscribe((dados)=>{
+      if(stt == 1){
+        this.mostrarPedidos()
+      }else{
+        this.pedido = dados
+      }
+    })
+  }
+
+
 }
-
-

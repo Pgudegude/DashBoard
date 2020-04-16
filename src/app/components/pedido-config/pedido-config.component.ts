@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-pedido-config',
   templateUrl: './pedido-config.component.html',
@@ -8,14 +7,10 @@ import { Component, OnInit } from '@angular/core';
 export class PedidoConfigComponent implements OnInit {
   login: boolean
   usuario: any
-
   constructor() { }
-
   ngOnInit() {
     this.verificarLogin();
   }
-
-
   verificarLogin(){
     if (sessionStorage.getItem("usuario") != null) {
       this.usuario = JSON.parse(atob(sessionStorage.getItem("usuario")))
@@ -25,5 +20,4 @@ export class PedidoConfigComponent implements OnInit {
       this.login = false
     }
   }
-
 }

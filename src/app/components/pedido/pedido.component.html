@@ -8,7 +8,19 @@
                         <th scope="col">Pedido</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Status Pagamento</th>
-                        <th scope="col">Status Pedido</th>
+                        <th scope="col" [formGroup]="formularioStatus">
+                            <select formControlName="status" (change)="listarStatus()" style="color: black; font-weight: bold;">
+                                <option selected>Statuts Pedido</option>
+                                <option value="pagamento foi aprovado">pagamento foi aprovado</option>
+                                <option value="Aguardando Pagamento">Aguardando Pagamento</option>
+                                <option value="saiu para entrega ao destinatário">saiu para entrega ao destinatário</option>
+                                <option value="em separação">em separação</option>
+                                <option value="entregue a transportadora">entregue a transportadora</option>
+                                <option value="entregue">entregue</option>
+                                <option value="cancelado">cancelado</option>
+                                <option value="1">Todos</option>
+                            </select>
+                        </th>
                         <th scope="col">Produto</th>
                         <th scope="col">Qtd</th>
                         <th scope="col">Endereço</th>
@@ -16,59 +28,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr *ngFor="let pedidos of pedido">
-                            <th scope="row">{{pedidos.detalhe.request?.date | date:"dd/MM/yyyy"}}</th>
-                            <th scope="row">{{pedidos.detalhe.request?.id}}</th>
-                            <th scope="row">{{pedidos.detalhe.request?.price}}</th>
-                            <th scope="row">{{pedidos.detalhe.request?.payment.status}}</th>
-                            <th scope="row">{{pedidos.detalhe.request?.statusRequest[pedidos.quantidade]?.statusRequest}}</th>
-                            <th scope="row">{{pedidos.detalhe.codProduct.name}}</th>
-                            <th scope="row">{{pedidos.detalhe.amount}}</th>
-                            <th scope="row">{{pedidos.detalhe.request.address.logradouro}},
-                                {{pedidos.detalhe.request.address.number}} -
-                                {{pedidos.detalhe.request.address.complement}}
-                                <br>
-                                {{pedidos.detalhe.request.address.neighborhood}}
-                                <br>
-                                {{pedidos.detalhe.request.address.city}} - {{pedidos.detalhe.request.address.state}}
-                                <br> 
-                                {{pedidos.detalhe.request.address.zipCode}}
-                            </th>
-                            <th scope="row">{{pedidos.detalhe.valueFreight}}</th>
-                        </tr>
+                    <tr *ngFor="let pedidos of pedido">
+                        <th scope="row">{{pedidos.detalhe?.request.date | date:"dd/MM/yyyy"}}</th>
+                        <th scope="row">{{pedidos.detalhe?.request.id}}</th>
+                        <th scope="row">{{pedidos.detalhe?.request.price}}</th>
+                        <th scope="row">{{pedidos.detalhe?.request.payment.status}}</th>
+                        <th scope="row">{{pedidos.detalhe?.request.statusRequest[pedidos.quantidade].statusRequest}}</th>
+                        <th scope="row">{{pedidos.detalhe?.codProduct.name}}</th>
+                        <th scope="row">{{pedidos.detalhe?.amount}}</th>
+                        <th scope="row">{{pedidos.detalhe?.request.address.logradouro}},
+                            {{pedidos.detalhe?.request.address.number}} -
+                            {{pedidos.detalhe?.request.address.complement}}
+                            <br>
+                            {{pedidos.detalhe?.request.address.neighborhood}}
+                            <br>
+                            {{pedidos.detalhe?.request.address.city}} - {{pedidos.detalhe?.request.address.state}}
+                            <br>
+                            {{pedidos.detalhe?.request.address.zipCode}}
+                        </th>
+                        <th scope="row">{{pedidos.detalhe?.valueFreight}}</th>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </main>
-<!-- <div id="detalhe" class="modal m-2">
-    <form class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title">Meu pedido</h1>
-        </div>
-        <div class="container" >
-            <h5><strong>Endereço de entrega:.</strong> <br>
-                 {{pedido[posicao]?.detalhe.request.address.logradouro}},
-                  {{pedido[posicao]?.detalhe.request.address.number}},
-                   {{pedido[posicao]?.detalhe.request.address.neighborhood}},
-                    {{pedido[posicao]?.detalhe.request.address.city}}-
-                    {{pedido[posicao]?.detalhe.request.address.state}} 
-                    {{pedido[posicao]?.detalhe.request.address.zipCode}}</h5>
-            <div class="row m-2" *ngFor="let item of dets">
-                <div class="col-md-3">
-                    <h5><strong>Produto:.</strong><img [src]="item.detalhe.codProduct.image" alt="{{item.detalhe.codProduct.name}}" title="{{item.detalhe.codProduct.name}}"
-                        class="card-img" width="50" height="50"></h5>
-                </div>
-                <div class="col-md-3">
-                    <h5><strong>Frete:.</strong> <br> {{item.detalhe.request.priceFreight | currency:"BRL"}}</h5>
-                </div>
-                <div class="col-md-3">
-                    <h5><strong>Quantidade:.</strong> {{item.detalhe.amount}}</h5>
-                </div>
-                <div class="col-md-3">
-                    <h5><strong>Preço Unit:.</strong> <br> {{item.detalhe.codProduct.valueDiscount | currency:"BRL"}}</h5>
-                </div>
-            </div>
-        </div>
-    </form>
-</div> -->

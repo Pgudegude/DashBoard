@@ -1,3 +1,4 @@
+import { FaturamentoService } from './../../service/faturamento.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,11 +10,30 @@ export class FaturamentoConfigComponent implements OnInit {
 
   login: boolean
   usuario: any
+  assuntos: any = []
+  status: any = []
 
-  constructor() { }
+  constructor(private service: FaturamentoService) { }
 
   ngOnInit(): void {
     this.verificarLogin()
+    this.listarAssuntos()
+    this.listarStatus()
+  }
+
+  listarAssuntos(){
+    this.service.contatos().subscribe((dados)=>{
+      this.assuntos = dados
+    })
+  }
+
+
+  listarStatus(){
+    this.service.listarStatus().subscribe((dados)=>{
+      console.log(dados);
+      
+      this.status = dados
+    })
   }
 
   

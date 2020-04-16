@@ -1,7 +1,7 @@
 <div class="row ml-2 p-0 m-0">
     <h3>Preencha <strong>todos</strong> os campos</h3>
 </div>
-<form method="POST" [formGroup]="formAlterar" (ngSubmit)="alterarCliente()">
+<form method="POST" [formGroup]="formAlterar" (ngSubmit)="alterarCliente()" (ngSubmit)="alterarEndereco()">
     <div class="row p-0 m-0 mr-1 ml-1">
         <div class="col-md-6 p-0 m-0 ml-1">
             <div class="col-md-12 p-0 m-0">
@@ -131,7 +131,7 @@
     </div>
 </form>
 <ng-template #enderecos>
-    <div class="row p-0 m-0 ml-1">
+    <div class="row p-0 m-0 ml-1" >
         <div class="col-md- m-0 p-0 text-center" *ngFor="let endereco of endereco">
             <div class="card" style="width: 15rem;" (click)="puxarCliente()" (click)="enderecoEscolhido(endereco)">
                 <div class="card-body">

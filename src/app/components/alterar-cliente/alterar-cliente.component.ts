@@ -147,15 +147,20 @@ export class AlterarClienteComponent implements OnInit {
     })
   }
 
+  alterarEndereco(){
+    if (confirm("Confirme suas alterações!")) {
+    this.serviceEndereco.alterar(this.formAlterar.value).subscribe(() => {
+      alert("Endereço alterado!")
+      this.formAlterar.reset()
+    })
+  }
+  }
+
 
   alterarCliente() {
     if (confirm("Confirme suas alterações!")) {
       this.serviceCliente.alterar(this.formAlterar.value).subscribe(() => {
         alert("Cliente alterado!")
-        this.formAlterar.reset()
-      })
-      this.serviceEndereco.alterar(this.formAlterar.value).subscribe(() => {
-        alert("Endereço alterado!")
         this.formAlterar.reset()
       })
     }
