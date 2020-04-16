@@ -58,13 +58,14 @@ adaptar(data: any[]) {
 
   alterar(address: Endereco){
     let endereco = {
-      zipCode: address._cep,
+      idAddress: address._id,
       logradouro: address._endereco,
+      zipCode: address._cep,
       complement: address._complemento,
       number: address._numero,
       state: address._estado,
       city: address._cidade,
-      neighborhood: address.bairro
+      neighborhood: address._bairro
     }
     return this.http.put(`/api/find-address/alter`,endereco)
   }

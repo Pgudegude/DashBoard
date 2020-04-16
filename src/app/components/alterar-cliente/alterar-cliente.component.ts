@@ -1,9 +1,10 @@
 import { Endereco } from './../../model/endereco';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { FormBuilder } from '@angular/forms';
 import { EnderecoService } from 'src/app/service/endereco.service';
+import { HttpService } from 'src/app/service/http.service';
 
 
 @Component({
@@ -16,12 +17,25 @@ export class AlterarClienteComponent implements OnInit {
   formAlterar: FormGroup
   escolha: boolean = false
   alterar: boolean = true
+  end: Endereco = new Endereco("", "", "", "", "", "", "", "")
 
-  constructor(private construirForm: FormBuilder, private serviceCliente: ClienteService, private serviceEndereco: EnderecoService) { }
+  constructor(private http: HttpService, private construirForm: FormBuilder, private serviceCliente: ClienteService, private serviceEndereco: EnderecoService) { }
 
   ngOnInit() {
     this.criarAlteracoes()
   }
+
+
+  capturarCEP() {
+    this.http.getCep(this.formAlterar.value).subscribe((data) => {
+      this.end.setEndereco(data.cep, data.logradouro, data.bairro, data.uf, data.localidade)
+      this.formAlterar.controls['_endereco'].patchValue(this.end.endereco);
+      this.formAlterar.controls['_bairro'].patchValue(this.end.bairro);
+      this.formAlterar.controls['_estado'].patchValue(this.end.estado);
+      this.formAlterar.controls['_cidade'].patchValue(this.end.cidade);
+    })
+  }
+
 
   puxarCliente() {
     let dados = this.formAlterar.value.idClient
@@ -41,16 +55,19 @@ export class AlterarClienteComponent implements OnInit {
     })
   }
 
-  enderecoEscolhido(endereco: Endereco){
+
+  enderecoEscolhido(endereco: Endereco) {
     this.escolha = true
+    this.formAlterar.controls['_id'].patchValue(endereco._id)
     this.formAlterar.controls['_cep'].patchValue(endereco._cep)
-        this.formAlterar.controls['_cidade'].patchValue(endereco._cidade)
-        this.formAlterar.controls['_estado'].patchValue(endereco._estado)
-        this.formAlterar.controls['_endereco'].patchValue(endereco._endereco)
-        this.formAlterar.controls['_bairro'].patchValue(endereco._bairro)
-        this.formAlterar.controls['_numero'].patchValue(endereco._numero)
-        this.formAlterar.controls['_complemento'].patchValue(endereco._complemento)
+    this.formAlterar.controls['_cidade'].patchValue(endereco._cidade)
+    this.formAlterar.controls['_estado'].patchValue(endereco._estado)
+    this.formAlterar.controls['_endereco'].patchValue(endereco._endereco)
+    this.formAlterar.controls['_bairro'].patchValue(endereco._bairro)
+    this.formAlterar.controls['_numero'].patchValue(endereco._numero)
+    this.formAlterar.controls['_complemento'].patchValue(endereco._complemento)
   }
+
 
   criarAlteracoes() {
     this.formAlterar = this.construirForm.group({
@@ -134,11 +151,11 @@ export class AlterarClienteComponent implements OnInit {
   alterarCliente() {
     if (confirm("Confirme suas alterações!")) {
       this.serviceCliente.alterar(this.formAlterar.value).subscribe(() => {
-        this.serviceEndereco.alterar(this.formAlterar.value).subscribe(()=>{
-          alert("Endereço alterado!")
-          this.formAlterar.reset()
-        })
         alert("Cliente alterado!")
+        this.formAlterar.reset()
+      })
+      this.serviceEndereco.alterar(this.formAlterar.value).subscribe(() => {
+        alert("Endereço alterado!")
         this.formAlterar.reset()
       })
     }

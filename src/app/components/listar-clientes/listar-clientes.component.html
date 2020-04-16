@@ -1,8 +1,8 @@
 <main>
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
         <div>
             <table class="table table-striped m-0">
-                <thead>
+                <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nome</th>
@@ -12,7 +12,7 @@
                         <th scope="col">Email</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                         <tr *ngFor="let cliente of clientes">
                             <th scope="row">{{cliente.id}}</th>
                             <th scope="row">{{cliente.nomeCompleto}}</th>

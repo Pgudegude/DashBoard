@@ -28,9 +28,11 @@ img: string = "../../../assets/Imagem/"
   }
 
 
+  listarPorCategoria(cod: number){
+    return this.http.get(`/api/product-category/${cod}`)
+  }
 
   public alterar(prod: ProductAPI){
-
     let produto = {
       codProduct: prod.codProduct,
       description: prod.description,

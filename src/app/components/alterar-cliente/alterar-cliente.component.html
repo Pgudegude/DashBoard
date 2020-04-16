@@ -26,8 +26,8 @@
                     <div class="col-md-4 m-0 p-0">
                         <div class="form-group" *ngIf="alterar; else data">
                             <label for="birthDate">Data de nascimento:</label>
-                            <input class="form-control" type="text" (click)="alterar=false" name="birthDate" id="birthDate"
-                                formControlName="birthDate">
+                            <input class="form-control" type="text" (click)="alterar=false" name="birthDate"
+                                id="birthDate" formControlName="birthDate">
                         </div>
                     </div>
                     <ng-template #data>
@@ -52,13 +52,14 @@
                 </div>
             </div>
         </div>
-        <div class="row p-0 m-0 ml-1">
-            <div class="col-md-12 m-0 p-0" *ngIf="escolha ;else enderecos">
+        <div class="row p-0 m-0 ml-1"  *ngIf="escolha ;else enderecos">
+            <div class="col-md-12 m-0 p-0">
+               
                 <div class="row p-0 m-0 mr-1 ml-1">
                     <div class="col-md-3 m-0 p-0 form-group">
                         <label for="cep">CEP:</label>
-                        <input class="form-control" type="text" placeholder="0000-000" name="cep" id="cep"
-                            formControlName="_cep">
+                        <input class="form-control" type="text" (blur)="capturarCEP()" placeholder="0000-000" name="cep"
+                            id="cep" formControlName="_cep">
                     </div>
                     <div class="col-md-9  form-group">
                         <label for="endereco">Endereço:</label>
@@ -130,13 +131,15 @@
     </div>
 </form>
 <ng-template #enderecos>
-    <div class="col-md-12 m-0 p-0 text-center" *ngFor="let endereco of endereco">
-        <div class="card mb-2"  style="width: 18rem;" (click)="puxarCliente()" (click)="enderecoEscolhido(endereco)">
-            <div class="card-body">
-                <p>{{endereco._endereco}}, nº {{endereco._numero}}</p>
-                <p>Complemento {{endereco._complemento}}</p>
-                <p>Cep {{endereco._cep}}</p>
-                <p>Bairro {{endereco._bairro}}</p>
+    <div class="row p-0 m-0 ml-1">
+        <div class="col-md- m-0 p-0 text-center" *ngFor="let endereco of endereco">
+            <div class="card" style="width: 15rem;" (click)="puxarCliente()" (click)="enderecoEscolhido(endereco)">
+                <div class="card-body">
+                    <p>{{endereco._endereco}}, nº {{endereco._numero}}</p>
+                    <p>Complemento: {{endereco._complemento}}</p>
+                    <p>CEP: {{endereco._cep}}</p>
+                    <p>Bairro: {{endereco._bairro}}</p>
+                </div>
             </div>
         </div>
     </div>
