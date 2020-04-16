@@ -1,28 +1,17 @@
-<<<<<<< HEAD
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-=======
-import { StatusRequest } from 'src/app/model/StatusRequest';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
->>>>>>> 8f38c34621d85d0a3e555a252401cb636884503b
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
+import { StatusRequest } from 'src/app/model/StatusRequest';
+
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent implements OnInit {
-<<<<<<< HEAD
-  
-
-
-  
-  constructor(private http: PedidoService) {
-  }
-=======
->>>>>>> 8f38c34621d85d0a3e555a252401cb636884503b
 
   formularioStatus: FormGroup
 
@@ -41,28 +30,18 @@ export class PedidoComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-  
-
-
-  mostrarPedidos() {
-    this.http.buscarPedidos().subscribe(data => {
-   
-      data.forEach(d =>{
-      
-        this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
-
-      }
-      )
-     
-=======
   criandoForm() {
     this.formularioStatus = this.fb.group({
       status: [
         '',
         Validators.compose([
           Validators.required
-        ])]
+        ])],
+        pagamento: [
+          '',
+          Validators.compose([
+            Validators.required
+          ])],
     })
   }
 
@@ -72,7 +51,6 @@ export class PedidoComponent implements OnInit {
         this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
       }
       )
->>>>>>> 8f38c34621d85d0a3e555a252401cb636884503b
     })
     if (this.pedido) {
       this.carregar = true;
@@ -80,15 +58,6 @@ export class PedidoComponent implements OnInit {
     else { this.carregar = false }
     return this.pedido
   }
-<<<<<<< HEAD
-  ngOnInit(): void {
-    
-    this.mostrarPedidos();
-  }
-  
-  dets : any [] = []
-  posicao: any 
-=======
 
 
   ngOnInit(): void {
@@ -99,7 +68,6 @@ export class PedidoComponent implements OnInit {
 
   dets: any[] = []
   posicao: any
->>>>>>> 8f38c34621d85d0a3e555a252401cb636884503b
   details(pedido) {
     this.dets = []
     this.detalhe
@@ -108,21 +76,49 @@ export class PedidoComponent implements OnInit {
     console.log(this.dets)
   }
 
-<<<<<<< HEAD
- 
-=======
 
   listarStatus(){
     let stt = this.formularioStatus.value.status
-    this.http.listarStatus(stt).subscribe((dados)=>{
-      if(stt == 1){
-        this.mostrarPedidos()
-      }else{
-        this.pedido = dados
-      }
-    })
-  }
+    this.pedido=[]
+    let pedidoFiltrado=[]
+    this.http.buscarPedidos().subscribe(
+      (data: any) => {
+      pedidoFiltrado=  data.filter((event) => {
+        console.log(event.request.statusRequest[event.request.statusRequest.length-1].statusRequest)
+        console.log(stt)
+          return event.request.statusRequest[event.request.statusRequest.length-1].statusRequest == stt
+        });
+        console.log(pedidoFiltrado)
+        pedidoFiltrado.forEach(d=>{this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
+        console.log(this.pedido)})
+        
+      }, (error: any) => {
+        console.error("ERROR", error)
+      })
+    }
+//     this.http.listarStatus(stt).subscribe((status)=>{
+//       if(stt == 1){
+//         this.mostrarPedidos()
+//       }else{
+// console.log(status)
 
 
->>>>>>> 8f38c34621d85d0a3e555a252401cb636884503b
+
+
+        // this.pedido.push(new PedidoDetalhe(status,status.request.statusRequest.length-1))
+        // this.pedido = status
+  //     }
+  //   })
+  // }
+  // listarStatusPagamento(){
+  //   let pagamento = this.formularioStatus.value.pagamento
+  //   this.http.listarStatus(pagamento).subscribe((dados)=>{
+  //     if(pagamento == 1){
+  //       this.mostrarPedidos()
+  //     }else{
+  //       this.pedido = dados
+  //     }
+  //   })
+  // }
+
 }

@@ -41,6 +41,10 @@ export class ListarProdutosComponent implements OnInit {
         this.produtos = categoria
       }
     })
+
+
+
+
   }
 
 
