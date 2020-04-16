@@ -152,6 +152,7 @@ export class AlterarClienteComponent implements OnInit {
 
   alterarCliente() {
     if (confirm("Confirme suas alterações!")) {
+      console.log(this.formAlterar.value)
       this.serviceCliente.alterar(this.formAlterar.value).subscribe(() => {
         alert("Cliente alterado!")
         this.formAlterar.reset()

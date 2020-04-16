@@ -43,6 +43,7 @@ export class ClienteService {
       "phone": cliente.telefone,
       "password": cliente.senha
     }
+
   }
 
 
@@ -51,15 +52,19 @@ public findById(idClient: number){
 }
 
 
-public alterar(client: Cliente){
+public alterar(client: any){
+  console.log(client)
   let cliente = {
-    "idClient": client.id,
-    "name": client.nomeCompleto,
+    "idClient": client.idClient,
+    "name": client.name,
     "cpf": client.cpf,
-    "birthDate": client.dataDeNascimento,
-    "phone": client.telefone,
-    "mail": client.email,
-    "password": client.senha
+    "birthDate": client.birthDate,
+    "phone": client.phone,
+    "mail": client.mail,
+    "password": client.password
+
+
+
   }
   return this.http.put(`/api/client`,cliente)
   }
