@@ -6,11 +6,13 @@ import { ProductService } from 'src/app/service/product.service';
 import { filter } from 'rxjs/operators';
 import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
+
 @Component({
   selector: 'app-listar-produtos',
   templateUrl: './listar-produtos.component.html',
   styleUrls: ['./listar-produtos.component.css']
 })
+
 export class ListarProdutosComponent implements OnInit {
 
   produtos: any = []
@@ -42,6 +44,8 @@ export class ListarProdutosComponent implements OnInit {
         this.produtos = categoria
       }
     })
+
+
   }
 
 

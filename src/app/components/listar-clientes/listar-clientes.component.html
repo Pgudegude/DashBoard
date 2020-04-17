@@ -14,12 +14,12 @@
                 </thead>
                 <tbody class="text-center">
                         <tr *ngFor="let cliente of clientes">
-                            <th scope="row">{{cliente.id}}</th>
-                            <th scope="row">{{cliente.nomeCompleto}}</th>
+                            <th scope="row">{{cliente.idClient}}</th>
+                            <th scope="row">{{cliente.name}}</th>
                             <th scope="row">{{cliente.cpf}}</th>
-                            <th scope="row">{{cliente.dataDeNascimento  | date:"dd/MM/yyyy"}}</th>
-                            <th scope="row">{{cliente.telefone}}</th>
-                            <th scope="row">{{cliente.email}}</th>
+                            <th scope="row">{{cliente.birthDate | date:"dd/MM/yyyy"}}</th>
+                            <th scope="row">{{cliente.phone}}</th>
+                            <th scope="row">{{cliente.mail}}</th>
                         </tr>
                 </tbody>
             </table>

@@ -1,5 +1,5 @@
+import { FaturamentoService } from './../../service/faturamento.service';
 import { Component, OnInit } from '@angular/core';
-import { FaturamentoService } from 'src/app/service/faturamento.service';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { PedidoFaturamento } from 'src/app/model/pedidoFaturamento';
 

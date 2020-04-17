@@ -14,4 +14,13 @@ export class FaturamentoService {
   buscarPedidos(){
     return this.http.get("/api/buscarTodosPedidos")
   }
+
+  contatos(){
+    return this.http.get("/api/elogio");
+  }
+
+  listarStatus(){
+   return this.http.get("/api/status_valor");
+  }
+
 }

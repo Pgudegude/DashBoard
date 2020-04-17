@@ -14,7 +14,9 @@ export class PedidoConfigComponent implements OnInit {
   constructor(private emissor: EmissorDeEventosService) { }
 
   ngOnInit() {
+    
     this.verificarLogin();
+   
   }
   emitirEvento(){
   this.emissor.emitirEventoPedidoAlterado()
@@ -29,5 +31,4 @@ export class PedidoConfigComponent implements OnInit {
       this.login = false
     }
   }
-
 }

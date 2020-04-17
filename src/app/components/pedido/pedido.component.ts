@@ -1,3 +1,5 @@
+
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Detalhe } from 'src/app/model/detalhe';
@@ -5,6 +7,7 @@ import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
 import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
 
 
+import { StatusRequest } from 'src/app/model/StatusRequest';
 
 @Component({
   selector: 'app-pedido',
@@ -12,20 +15,39 @@ import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.serv
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent implements OnInit {
-  constructor(private http: PedidoService, private emissor : EmissorDeEventosService) {
+  constructor(private http: PedidoService, private emissor : EmissorDeEventosService, private fb:FormBuilder) {
     this.emissor.emissor.subscribe(()=>this.mostrarPedidos())
   }
   
+
+  formularioStatus: FormGroup
+
+
   detalhe: Detalhe[]
   carregar: boolean
-  pedido: PedidoDetalhe[] = []
-
+  // pedido: PedidoDetalhe[] = []
+  pedido: any = []
 
   adaptar(det: Detalhe) {
     return {
       "detalhe": det,
       "quantidade": det.request.statusRequest.length
     }
+  }
+
+  criandoForm() {
+    this.formularioStatus = this.fb.group({
+      status: [
+        '',
+        Validators.compose([
+          Validators.required
+        ])],
+        pagamento: [
+          '',
+          Validators.compose([
+            Validators.required
+          ])],
+    })
   }
 
   mostrarPedidos() {
@@ -43,8 +65,10 @@ export class PedidoComponent implements OnInit {
     return this.pedido
   }
 
+
   ngOnInit(): void {
     this.mostrarPedidos()
+    this.criandoForm()
   }
   // dets: any[] = []
   // posicao: any
@@ -56,6 +80,49 @@ export class PedidoComponent implements OnInit {
   //   console.log(this.dets)
   // }
 
+
+  listarStatus(){
+    let stt = this.formularioStatus.value.status
+    this.pedido=[]
+    let pedidoFiltrado=[]
+    this.http.buscarPedidos().subscribe(
+      (data: any) => {
+      pedidoFiltrado=  data.filter((event) => {
+        console.log(event.request.statusRequest[event.request.statusRequest.length-1].statusRequest)
+        console.log(stt)
+          return event.request.statusRequest[event.request.statusRequest.length-1].statusRequest == stt
+        });
+        console.log(pedidoFiltrado)
+        pedidoFiltrado.forEach(d=>{this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
+        console.log(this.pedido)})
+        
+      }, (error: any) => {
+        console.error("ERROR", error)
+      })
+    }
+//     this.http.listarStatus(stt).subscribe((status)=>{
+//       if(stt == 1){
+//         this.mostrarPedidos()
+//       }else{
+// console.log(status)
+
+
+
+
+        // this.pedido.push(new PedidoDetalhe(status,status.request.statusRequest.length-1))
+        // this.pedido = status
+  //     }
+  //   })
+  // }
+  // listarStatusPagamento(){
+  //   let pagamento = this.formularioStatus.value.pagamento
+  //   this.http.listarStatus(pagamento).subscribe((dados)=>{
+  //     if(pagamento == 1){
+  //       this.mostrarPedidos()
+  //     }else{
+  //       this.pedido = dados
+  //     }
+  //   })
+  // }
+
 }
-
-
