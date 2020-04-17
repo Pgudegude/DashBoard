@@ -8,6 +8,7 @@ import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.serv
 
 
 import { StatusRequest } from 'src/app/model/StatusRequest';
+import { FaturamentoService } from 'src/app/service/faturamento.service';
 
 @Component({
   selector: 'app-pedido',
@@ -15,12 +16,16 @@ import { StatusRequest } from 'src/app/model/StatusRequest';
   styleUrls: ['./pedido.component.css']
 })
 export class PedidoComponent implements OnInit {
-  constructor(private http: PedidoService, private emissor : EmissorDeEventosService, private fb:FormBuilder) {
+  constructor(private http: PedidoService,
+     private emissor : EmissorDeEventosService, private fb:FormBuilder,
+     private faturamentoService: FaturamentoService) {
     this.emissor.emissor.subscribe(()=>this.mostrarPedidos())
   }
   
 
   formularioStatus: FormGroup
+
+request:[]=[]
 
 
   detalhe: Detalhe[]
@@ -34,7 +39,7 @@ export class PedidoComponent implements OnInit {
       "quantidade": det.request.statusRequest.length
     }
   }
-
+  formularioPedido:FormGroup
   criandoForm() {
     this.formularioStatus = this.fb.group({
       status: [
@@ -48,6 +53,9 @@ export class PedidoComponent implements OnInit {
             Validators.required
           ])],
     })
+this.formularioPedido=this.fb.group({
+  pedido: [""],
+})
   }
 
   mostrarPedidos() {
@@ -65,10 +73,18 @@ export class PedidoComponent implements OnInit {
     return this.pedido
   }
 
-
+buscarPedidos(){
+  this.request=[]
+  this.faturamentoService.buscarPedidos().subscribe((data:any)=>{
+    this.request=data
+    console.log(this.request)
+  }
+    )
+}
   ngOnInit(): void {
     this.mostrarPedidos()
     this.criandoForm()
+    this.buscarPedidos()
   }
   // dets: any[] = []
   // posicao: any
@@ -81,10 +97,38 @@ export class PedidoComponent implements OnInit {
   // }
 
 
+  listarPedido(){
+    let ped = this.formularioPedido.value.pedido
+    this.pedido=[]
+    let pedidoFiltrado=[]
+    if(ped==1){
+      this.mostrarPedidos()
+    }
+    else{
+      this.http.buscarPedidos().subscribe(
+        (data: any) => {
+        pedidoFiltrado=data.filter((event) => {
+          console.log(event.request.id)
+          console.log(ped)
+            return event.request.id == ped
+          });
+          console.log(pedidoFiltrado)
+          pedidoFiltrado.forEach(d=>{this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
+          console.log(this.pedido)})
+        
+        }, (error: any) => {
+          console.error("ERROR", error)
+        })}
+  }
+
   listarStatus(){
     let stt = this.formularioStatus.value.status
     this.pedido=[]
     let pedidoFiltrado=[]
+    if(stt==1){
+      this.mostrarPedidos()
+    }
+    else{
     this.http.buscarPedidos().subscribe(
       (data: any) => {
       pedidoFiltrado=  data.filter((event) => {
@@ -95,10 +139,10 @@ export class PedidoComponent implements OnInit {
         console.log(pedidoFiltrado)
         pedidoFiltrado.forEach(d=>{this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
         console.log(this.pedido)})
-        
+      
       }, (error: any) => {
         console.error("ERROR", error)
-      })
+      })}
     }
 //     this.http.listarStatus(stt).subscribe((status)=>{
 //       if(stt == 1){

@@ -5,7 +5,13 @@
                 <thead>
                     <tr>
                         <th scope="col">Data</th>
-                        <th scope="col">Pedido</th>
+                        <th scope="col" [formGroup]="formularioPedido">
+                        <select (change)="listarPedido()" formControlName='pedido' style=" background-color: #343a40; color: white; font-weight: bold; ">
+                            <option value="" disabled selected>Pedidos</option>
+                            <option value="1">Todos</option>
+                            <option *ngFor="let pedidos of request" value="{{pedidos?.id}}">{{pedidos?.id}}</option>
+                        </select>
+                    </th>
                         <th scope="col">Valor</th>
                         <th scope="col" [formGroup]="formularioStatus">Status Pagamento
                             <!-- <select formControlName="pagamento" class="form-control " id="pagamento" style=" background-color: #343a40; color: white; font-weight: bold; ">
