@@ -1,12 +1,11 @@
-import { StatusRequest } from 'src/app/model/StatusRequest';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoDetalhe } from 'src/app/model/pedidoDetalhe';
+import { StatusRequest } from 'src/app/model/StatusRequest';
 import { EmissorDeEventosService } from 'src/app/service/emissor-de-eventos.service';
-
-
 
 @Component({
   selector: 'app-pedido',
@@ -37,7 +36,12 @@ export class PedidoComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required
-        ])]
+        ])],
+        pagamento: [
+          '',
+          Validators.compose([
+            Validators.required
+          ])],
     })
   }
 
@@ -64,14 +68,22 @@ export class PedidoComponent implements OnInit {
 
   listarStatus(){
     let stt = this.formularioStatus.value.status
-    this.http.listarStatus(stt).subscribe((dados)=>{
-      if(stt == 1){
-        this.mostrarPedidos()
-      }else{
-        this.pedido = dados
-      }
-    })
-  }
-
+    this.pedido=[]
+    let pedidoFiltrado=[]
+    this.http.buscarPedidos().subscribe(
+      (data: any) => {
+      pedidoFiltrado=  data.filter((event) => {
+        console.log(event.request.statusRequest[event.request.statusRequest.length-1].statusRequest)
+        console.log(stt)
+          return event.request.statusRequest[event.request.statusRequest.length-1].statusRequest == stt
+        });
+        console.log(pedidoFiltrado)
+        pedidoFiltrado.forEach(d=>{this.pedido.push(new PedidoDetalhe(d,d.request.statusRequest.length-1))
+        console.log(this.pedido)})
+        
+      }, (error: any) => {
+        console.error("ERROR", error)
+      })
+    }
 
 }

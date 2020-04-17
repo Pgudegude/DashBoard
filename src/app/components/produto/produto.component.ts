@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProdutoComponent implements OnInit {
 
+  
   getter() {
     this.productService.getProducts().subscribe(
       (data: apiProduct) => {

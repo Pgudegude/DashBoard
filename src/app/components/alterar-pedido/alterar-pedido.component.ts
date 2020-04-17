@@ -2,15 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Detalhe } from 'src/app/model/detalhe';
 import { PedidoService } from 'src/app/service/pedido.service';
-import * as moment from 'moment'
 import { StatusRequest } from 'src/app/model/StatusRequest';
 import { Pedido } from 'src/app/model/Pedido';
 import { Pagamento } from 'src/app/model/Pagamento';
+
+
 @Component({
   selector: 'app-alterar-pedido',
   templateUrl: './alterar-pedido.component.html',
   styleUrls: ['./alterar-pedido.component.css']
 })
+
+
 export class AlterarPedidoComponent implements OnInit {
   constructor(private fb: FormBuilder, private service: PedidoService) { }
   alterarPedido: FormGroup
@@ -108,4 +111,7 @@ export class AlterarPedidoComponent implements OnInit {
       })
     }
   }
+
+
+ 
 }

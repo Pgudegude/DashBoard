@@ -25,25 +25,30 @@ function adaptar(data: any[]) {
   )
 }
 
-function adaptar3(data:any[]){
+function adaptar3(data: any[]) {
+  console.log(data)
   return data.map(
-    elem=> new Detalhe(elem.code,
-    elem.valueProduct,
-    elem.valueFreight,
-    elem.amount, 
-    elem.codProduct, 
-    new Pedido(elem.request.price, 
-      elem.request.priceFreight,
-      elem.request.date,elem.request.client,
-       elem.request.payment, elem.request.name, elem.request.phone,elem.request.address, elem.request.statusRequest, elem.request.id)
-  ))
+    elem => new Detalhe(elem.code,
+      elem.valueProduct,
+      elem.valueFreight,
+      elem.amount,
+      elem.codProduct,
+      new Pedido(elem.request.price,
+        elem.request.priceFreight,
+        elem.request.date, elem.request.client,
+        elem.request.payment, elem.request.name, elem.request.phone, elem.request.address, elem.request.statusRequest, elem.request.id)
+    ))
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidoService {
-  constructor(private http: HttpClient, private httpAddress: EnderecoService) { }
+  constructor(public http: HttpClient, private httpAddress: EnderecoService) { }
+
+  // public buscarPedido(code: number) {
+  //   return this.http.get(`/api/buscarRequest/${code}`)
+  // }
 
   adaptador2 = (pedido: Pedido) => {
     return {
@@ -91,27 +96,32 @@ export class PedidoService {
     }
   }
 
-details(code: number){
-  return this.http.get(`/api/find-itemcart/${code}`).pipe(
-    map(adaptar3)
-  )
+  details(code: number) {
+    return this.http.get(`/api/find-itemcart/${code}`).pipe(
+      map(adaptar3)
+    )
   }
-buscarPedidos(){
-  return this.http.get("/api/buscarRequest").pipe(
-    map(adaptar3)
-  )
-}
+  buscarPedidos() {
+    return this.http.get("/api/buscarRequest").pipe(
+      map(adaptar3)
+    )
+  }
+ 
 
-buscarPedidoId(id){
-  return this.http.get("/api/buscarPedidoID/"+id).pipe(
-  )
-}
-alterar(pedido: StatusRequest) {
-  return this.http.post(`/api/adicionar-statusRequest`,pedido)
-}
+  buscarPedidoId(id) {
+    return this.http.get("/api/buscarPedidoID/" + id).pipe(
+    )
+  }
+  alterar(pedido: StatusRequest) {
+    return this.http.post(`/api/adicionar-statusRequest`, pedido)
+  }
 
 
-listarStatus(status: string){
-  return this.http.get(`/api/listar_status/${status}`)
-}
+  listarStatus(status: string) {
+    return this.http.get(`/api/listar-status/${status}`).pipe()
+  }
+
+  // listarStatusPagamento(pagamento: string) {
+  //   return this.http.get(`/api/listar_payment/${pagamento}`)
+  // }
 }
