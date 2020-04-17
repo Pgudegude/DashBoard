@@ -34,7 +34,7 @@ export class ClienteService {
   constructor(private http: HttpClient, private httpAddress: EnderecoService) { }
 
 
-  clienteBanco = (cliente: Cliente) => {
+  clienteBanco = (cliente: any) => {
     return {
       idClient: cliente.idClient,
       name: cliente.name,
